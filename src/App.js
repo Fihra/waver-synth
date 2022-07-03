@@ -38,9 +38,9 @@ const App = () => {
           </ul>
          </div>
          <div className="piano-container">
-          <div>volume</div>
+           <KnobComponent btnLabel={knob.volume.btnLabel}/>
           <div className="piano">piano</div>
-          <div>reverb</div>
+          <KnobComponent btnLabel={knob.reverb.btnLabel}/>
          </div>
     </div>
   );
