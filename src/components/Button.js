@@ -3,8 +3,8 @@ import React, { useContext } from 'react';
 
 const Button = (props) => {
     return(
-        <button>
-            {props.btnLabel}
+        <button >
+            <span>{props.btnLabel}</span>
         </button>
     )
 }

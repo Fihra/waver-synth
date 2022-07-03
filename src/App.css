@@ -13,6 +13,39 @@ body {
   background: linear-gradient(0deg, rgba(0,127,127,1) 0%, rgba(255,255,255,1) 100%);
 }
 
+.synth-container ul button{
+  display: block;
+  margin-top: 24px;
+}
+
+button {
+  height: 45px;
+  width: 15%;
+  border-radius: 30px;
+  background-color: #355242;
+
+  background: linear-gradient(to left, #355242 50%, #63A0AC 50%) right;
+  background-size: 200%;
+  transition: 0.2s ease-out;
+}
+
+button span {
+  transition: color 0.5s;
+}
+
+button:hover {
+  background-position: left;
+}
+
+button:hover span {
+  color: #355242;
+}
+
+button span {
+  font-weight: bold;
+  color: white;
+}
+
 .piano-container {
   display: inline-flex;
 }

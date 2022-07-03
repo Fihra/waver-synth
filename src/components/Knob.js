@@ -17,7 +17,7 @@ const KnobComponent = (prop) => {
     }
 
     return(
-        <Knob name={prop.btnLabel} defaultPercentage={value} onChange={showValue} bg="darkgreen" mouseSpeed={3} style={style} />
+        <Knob name={prop.btnLabel} defaultPercentage={value} onChange={showValue} bg="#355242" mouseSpeed={3} style={style} />
     )
 }
 
