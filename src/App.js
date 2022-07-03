@@ -1,23 +1,45 @@
-import logo from './logo.svg';
 import './App.css';
 
-function App() {
+const App = () => {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        <h1>Waver Synth</h1>
+        <div className="synth-container">
+          <ul>
+            <li>sine</li>
+            <li>triangle</li>
+            <li>square</li>
+            <li>sawtooth</li>
+          </ul>
+        </div>
+         <div className="synth-spectrum">
+         </div>
+         <div className="effects-container">
+            <ul>
+              <li>delay</li>
+              <li>distortion</li>
+              <li>chorus</li>
+              <li>tremolo</li>
+              <li>flanger</li>
+              <li>phaser</li>
+              <li>low-pass filter</li>
+              <li>high-pass filter</li>
+            </ul>
+         </div>
+         <div className="adsr-spectrum"></div>
+         <div className="adsr-container">
+          <ul>
+            <li>attack</li>
+            <li>decay</li>
+            <li>sustain</li>
+            <li>release</li>
+          </ul>
+         </div>
+         <div className="piano-container">
+          <div>volume</div>
+          <div className="piano">piano</div>
+          <div>reverb</div>
+         </div>
     </div>
   );
 }
