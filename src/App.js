@@ -32,10 +32,9 @@ const App = () => {
          <div className="adsr-spectrum"></div>
          <div className="adsr-container">
           <ul>
-            <li>attack</li>
-            <li>decay</li>
-            <li>sustain</li>
-            <li>release</li>
+              {Object.keys(knob.adsr).map(env => {
+                return <KnobComponent btnLabel={knob.adsr[env].btnLabel} />
+              })}
           </ul>
          </div>
          <div className="piano-container">
