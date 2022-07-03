@@ -1,11 +1,14 @@
 import './App.css';
 import { SynthContext } from './context/SynthContext';
+import { KnobContext } from './context/KnobContext';
 import { useContext } from 'react';
 import Button from './components/Button';
+import KnobComponent from './components/Knob';
 
 const App = () => {
   const synth = useContext(SynthContext);
-  // console.log(synth);
+  const knob = useContext(KnobContext);
+  console.log(knob.effects);
 
   return (
     <div className="App">
@@ -21,14 +24,9 @@ const App = () => {
          </div>
          <div className="effects-container">
             <ul>
-              <li>delay</li>
-              <li>distortion</li>
-              <li>chorus</li>
-              <li>tremolo</li>
-              <li>flanger</li>
-              <li>phaser</li>
-              <li>low-pass filter</li>
-              <li>high-pass filter</li>
+              {Object.keys(knob.effects).map(effect => {
+                return <KnobComponent btnLabel={knob.effects[effect].btnLabel} />
+              })}
             </ul>
          </div>
          <div className="adsr-spectrum"></div>
