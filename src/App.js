@@ -1,15 +1,20 @@
 import './App.css';
+import { SynthContext } from './context/SynthContext';
+import { useContext } from 'react';
+import Button from './components/Button';
 
 const App = () => {
+  const synth = useContext(SynthContext);
+  // console.log(synth);
+
   return (
     <div className="App">
         <h1>Waver Synth</h1>
         <div className="synth-container">
           <ul>
-            <li>sine</li>
-            <li>triangle</li>
-            <li>square</li>
-            <li>sawtooth</li>
+            {Object.keys(synth).map(s => {
+              return <Button btnLabel={synth[s].btnLabel} />
+            })}
           </ul>
         </div>
          <div className="synth-spectrum">
