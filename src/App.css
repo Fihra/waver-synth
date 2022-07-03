@@ -1,3 +1,22 @@
 .App {
   text-align: center;
 }
+
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+  margin: 0;
+  background: rgb(0,127,127);
+  background: linear-gradient(0deg, rgba(0,127,127,1) 0%, rgba(255,255,255,1) 100%);
+}
+
+.piano-container {
+  display: inline-flex;
+}
+
+.piano-knob {
+  padding-top: 50px;
+}
