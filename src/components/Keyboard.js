@@ -1,6 +1,7 @@
 import React from 'react';
 import { Piano, KeyboardShortcuts, MidiNumbers } from 'react-piano';
 import 'react-piano/dist/styles.css';
+import * as Tone from 'tone';
 
 const Keyboard = () => {
     const firstNote = MidiNumbers.fromNote('c3');
@@ -11,16 +12,33 @@ const Keyboard = () => {
         keyboardConfig: KeyboardShortcuts.HOME_ROW,
     });
 
+    const toneSynth = new Tone.PolySynth();
+
+    const playNote = (note) => {
+        const timeNow = Tone.now();
+        let savedNote = Tone.Frequency(note, "midi").toNote();
+
+        toneSynth.triggerAttack(savedNote, timeNow).toDestination();
+    }
+
+    const stopNote = (note) => {
+        const timeNow = Tone.now();
+        let savedNote = Tone.Frequency(note, "midi").toNote();
+        toneSynth.triggerRelease(savedNote, timeNow + 0.1);
+    }
+
     return(
         <Piano
             noteRange={{ first: firstNote, last: lastNote }}
-            playNote={(midiNumber) => {
-                console.log(midiNumber)
+            playNote={(note) => {
+                // console.log(midiNumber)
+                playNote(note);
             }}
-            stopNote={(midiNumber) => {
-                console.log(midiNumber)
+            stopNote={(note) => {
+                // console.log(midiNumber)
+                stopNote(note);
             }}
-            width={1000}
+            width={700}
             keyboardShortcuts={keyboardShortcuts}
         />
     )
