@@ -7,10 +7,25 @@ html {
 }
 
 body {
-  height: 100%;
   margin: 0;
   background: rgb(0,127,127);
   background: linear-gradient(0deg, rgba(0,127,127,1) 0%, rgba(255,255,255,1) 100%);
+}
+
+.section-one {
+  display: flex;
+  max-width: 100%;
+}
+
+.synth-container {
+  flex-grow: 1;
+}
+
+.synth-spectrum {
+  flex-grow: 4;
+  height: 250px;
+  border: 1px solid black;
+  margin: 20px;
 }
 
 .synth-container ul button{
@@ -20,7 +35,7 @@ body {
 
 button {
   height: 45px;
-  width: 15%;
+  width: 100%;
   border-radius: 30px;
   background-color: #355242;
 

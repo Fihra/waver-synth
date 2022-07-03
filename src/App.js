@@ -13,14 +13,16 @@ const App = () => {
   return (
     <div className="App">
         <h1>Waver Synth</h1>
-        <div className="synth-container">
-          <ul>
-            {Object.keys(synth).map((s, i) => {
-              return <Button key={i} btnLabel={synth[s].btnLabel} />
-            })}
-          </ul>
-        </div>
-         <div className="synth-spectrum">
+        <div className="section-one">
+          <div className="synth-container">
+            <ul>
+              {Object.keys(synth).map((s, i) => {
+                return <Button key={i} btnLabel={synth[s].btnLabel} />
+              })}
+            </ul>
+          </div>
+          <div className="synth-spectrum">
+          </div>
          </div>
          <div className="effects-container">
             <ul>
