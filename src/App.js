@@ -5,6 +5,7 @@ import { useContext } from 'react';
 import Button from './components/Button';
 import KnobComponent from './components/Knob';
 import Keyboard from './components/Keyboard';
+import { SynthManagerProvider } from './context/SynthManagerContext';
 
 const App = () => {
   const synth = useContext(SynthContext);
@@ -13,6 +14,7 @@ const App = () => {
   return (
     <div className="App">
         <h1>Waver Synth</h1>
+        <SynthManagerProvider>
         <div className="section-one">
           <div className="synth-container">
             <ul>
@@ -24,6 +26,7 @@ const App = () => {
           <div className="synth-spectrum">
           </div>
          </div>
+         </SynthManagerProvider>
          <div className="effects-container">
             <ul>
               {Object.keys(knob.effects).map((effect, i) => {

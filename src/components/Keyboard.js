@@ -31,11 +31,9 @@ const Keyboard = () => {
         <Piano
             noteRange={{ first: firstNote, last: lastNote }}
             playNote={(note) => {
-                // console.log(midiNumber)
                 playNote(note);
             }}
             stopNote={(note) => {
-                // console.log(midiNumber)
                 stopNote(note);
             }}
             width={700}

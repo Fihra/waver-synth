@@ -52,6 +52,10 @@ button:hover {
   background-position: left;
 }
 
+.synth-active {
+  background-color: green;
+}
+
 button:hover span {
   color: #355242;
 }
