@@ -1,12 +1,11 @@
 import SYNTHACTIONS from "../actions/SynthActions";
 
 export const initialState = {
-    currentSynth: "square",
+    currentSynth: "Sine",
 }
 
 const synthManagerReducer = (state, action) => {
     const { type, payload } = action;
-    // console.log("Current State: ", state.currentSynth)
     switch(type){
         case SYNTHACTIONS.SET_SYNTH:
             return {

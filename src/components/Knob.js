@@ -2,23 +2,24 @@ import React, { useState } from 'react';
 import Knob from 'react-simple-knob';
 
 const KnobComponent = (prop) => {
-    const [value, setvalue ] = useState(0.5);
+    const [value, setvalue ] = useState(0);
 
     const style = {
         height: "80px",
         width: "170px",
         fontFamily: "Arima",
-        color: "black",
+        color: "#355242",
+        fontWeight: "bold",
         fontSize: 35
     }
 
     const showValue = (value) => {
-        setvalue(Math.round(value * 100)/100);
-        // console.log(Math.round(value * 100)/100);
+        let newValue = value / 100;
+        setvalue(newValue);
     }
 
     return(
-        <Knob name={prop.btnLabel} defaultPercentage={value} onChange={showValue} bg="white" fg="#355242" mouseSpeed={3} style={style} />
+        <Knob name={prop.btnLabel} defaultPercentage={0} onChange={showValue} bg="white" fg="#355242" transform={p => parseInt(p * 100, 10)} mouseSpeed={5} style={style} />
     )
 }
 
