@@ -13,7 +13,7 @@ const App = () => {
 
   return (
     <div className="App">
-        <h1>Waver Synth</h1>
+        <h1 className="app-name">Waver Synth</h1>
         <SynthManagerProvider>
         <div className="section-one">
           <div className="synth-container">
@@ -27,20 +27,24 @@ const App = () => {
           </div>
          </div>
          </SynthManagerProvider>
-         <div className="effects-container">
-            <ul>
-              {Object.keys(knob.effects).map((effect, i) => {
-                return <KnobComponent key={i} btnLabel={knob.effects[effect].btnLabel} />
-              })}
-            </ul>
+         <div className="section-two">
+          <div className="effects-container">
+              <ul>
+                {Object.keys(knob.effects).map((effect, i) => {
+                  return <li><KnobComponent key={i} btnLabel={knob.effects[effect].btnLabel} /></li>
+                })}
+              </ul>
+          </div>
          </div>
-         <div className="adsr-spectrum"></div>
-         <div className="adsr-container">
-          <ul>
-              {Object.keys(knob.adsr).map((env, i) => {
-                return <KnobComponent key={i} btnLabel={knob.adsr[env].btnLabel} />
-              })}
-          </ul>
+         <div className="section-three">
+          <div className="adsr-spectrum"></div>
+          <div className="adsr-container">
+            <ul>
+                {Object.keys(knob.adsr).map((env, i) => {
+                  return <KnobComponent key={i} btnLabel={knob.adsr[env].btnLabel} />
+                })}
+            </ul>
+          </div>
          </div>
          <div className="piano-container">
            <div className="piano-knob"><KnobComponent btnLabel={knob.volume.btnLabel}/></div>

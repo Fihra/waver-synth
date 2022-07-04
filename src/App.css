@@ -1,20 +1,39 @@
+:root {
+  --knob-border: 5px solid #355242;
+}
+
 .App {
   text-align: center;
 }
 
 html {
   height: 100%;
+  width: 100%;
+  /* margin-left: 250px;
+  margin-right: 250px; */
 }
 
 body {
   margin: 0;
   background: rgb(0,127,127);
   background: linear-gradient(0deg, rgba(0,127,127,1) 0%, rgba(255,255,255,1) 100%);
+  /* font-family: 'Arima', cursive; */
 }
+
+h1, h2, h3, h4, h5, h6, p, span, button {
+  font-family : 'Arima', cursive;
+}
+
+.app-name {
+  margin-bottom: 0;
+}
+
+/* Synths */
 
 .section-one {
   display: flex;
   max-width: 100%;
+  margin: 0;
 }
 
 .synth-container {
@@ -23,7 +42,7 @@ body {
 
 .synth-spectrum {
   flex-grow: 4;
-  height: 250px;
+  height: 220px;
   border: 1px solid black;
   margin: 20px;
 }
@@ -34,7 +53,7 @@ body {
 }
 
 button {
-  height: 45px;
+  height: 35px;
   width: 100%;
   border-radius: 30px;
   background-color: #355242;
@@ -65,6 +84,57 @@ button span {
   color: white;
 }
 
+
+/* Effects */
+.section-two {
+  height: 200px;
+  max-width: 100%;
+  margin: 0;
+  /* display: flex; */
+}
+
+.effects-container {
+  /* display: inline-flex; */
+}
+
+.effects-container ul {
+  /* background: blue; */
+  display: inline-flex;
+  justify-content: center;
+  margin: auto;
+  list-style-type: none;
+}
+
+.effects-container ul li {
+  padding: 20px;
+  
+}
+
+.effects-container ul li:first-child {
+  border-bottom: var(--knob-border);
+}
+
+.effects-container ul li:nth-child(2) {
+  border-bottom: var(--knob-border);
+  border-right: var(--knob-border);
+}
+
+.effects-container ul li:nth-child(3), .effects-container ul li:nth-child(4), .effects-container ul li:nth-child(5), .effects-container ul li:nth-child(6) {
+  border-bottom: var(--knob-border);
+}
+
+.effects-container ul li:nth-child(7) {
+  border-bottom: var(--knob-border);
+  border-left: var(--knob-border);
+}
+
+.effects-container ul li:last-child {
+  border-bottom: var(--knob-border);
+}
+
+/* ADSR */
+
+/* Piano */
 .piano-container {
   display: inline-flex;
 }

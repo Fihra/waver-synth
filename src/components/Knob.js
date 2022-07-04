@@ -5,10 +5,11 @@ const KnobComponent = (prop) => {
     const [value, setvalue ] = useState(0.5);
 
     const style = {
-        height: "60px",
-        width: "140px",
-        fontFamily: "Arial",
+        height: "80px",
+        width: "170px",
+        fontFamily: "Arima",
         color: "black",
+        fontSize: 35
     }
 
     const showValue = (value) => {
