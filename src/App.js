@@ -11,6 +11,12 @@ const App = () => {
   const synth = useContext(SynthContext);
   const knob = useContext(KnobContext);
 
+  const showKnobs =(knobCollection) => {
+    return Object.keys(knobCollection).map((item, i) => {
+      return <li><KnobComponent key={i} btnLabel={knobCollection[item].btnLabel}/></li>
+    })
+  }
+
   return (
     <div className="App">
         <h1 className="app-name">Waver Synth</h1>
@@ -30,9 +36,7 @@ const App = () => {
          <div className="section-two">
           <div className="effects-container">
               <ul>
-                {Object.keys(knob.effects).map((effect, i) => {
-                  return <li><KnobComponent key={i} btnLabel={knob.effects[effect].btnLabel} /></li>
-                })}
+                {showKnobs(knob.effects)}
               </ul>
           </div>
          </div>
@@ -40,9 +44,7 @@ const App = () => {
           <div className="adsr-spectrum"></div>
           <div className="adsr-container">
             <ul>
-                {Object.keys(knob.adsr).map((env, i) => {
-                  return <KnobComponent key={i} btnLabel={knob.adsr[env].btnLabel} />
-                })}
+                {showKnobs(knob.adsr)}
             </ul>
           </div>
          </div>

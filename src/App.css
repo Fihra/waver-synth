@@ -65,6 +65,8 @@ button {
 
 button span {
   transition: color 0.5s;
+  font-weight: bold;
+  color: white;
 }
 
 button:hover {
@@ -79,9 +81,9 @@ button:hover span {
   color: #355242;
 }
 
-button span {
-  font-weight: bold;
-  color: white;
+.button-active {
+  background-color: blue;
+  background: linear-gradient(to left, blue 100%, blue 100%) right;
 }
 
 
@@ -132,6 +134,17 @@ button span {
 }
 
 /* ADSR */
+.adsr-spectrum {
+  border: 1px solid black;
+  width: 600px;
+  height: 150px;
+  margin: 0 auto;
+}
+
+.adsr-container ul {
+  display: inline-flex;
+  list-style-type: none;
+}
 
 /* Piano */
 .piano-container {
