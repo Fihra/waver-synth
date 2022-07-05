@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import useSynth from '../context/SynthManagerContext';
 
 const Button = (props) => {
@@ -17,6 +17,10 @@ const Button = (props) => {
         }
 
     }
+
+    useEffect(() => {
+        setButtonActive("");
+    }, [currentSynth] );
  
     return(
         <button className={buttonActive === "active" ? "button-active" : ""} onClick={handleChange} value={props.btnLabel}>

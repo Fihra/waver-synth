@@ -3,7 +3,6 @@ import Knob from 'react-simple-knob';
 
 const KnobComponent = (prop) => {
     const [value, setvalue ] = useState(0);
-
     const style = {
         height: "80px",
         width: "170px",
@@ -18,8 +17,19 @@ const KnobComponent = (prop) => {
         setvalue(newValue);
     }
 
+    const showReverbKnob = () => {
+        return (
+            <div>
+                <span>Dry</span> | <span>Wet</span>
+            </div>
+        )
+    }
+
     return(
-        <Knob name={prop.btnLabel} defaultPercentage={0} onChange={showValue} bg="white" fg="#355242" transform={p => parseInt(p * 100, 10)} mouseSpeed={5} style={style} />
+    <div>
+        <Knob name={prop.btnLabel} defaultPercentage={0} onChange={showValue} bg="white" fg="#355242" transform={p => parseInt(p * 100, 10)} mouseSpeed={5} style={style} /> 
+        {prop.btnLabel === "Reverb" ? showReverbKnob() : null}
+    </div>
     )
 }
 

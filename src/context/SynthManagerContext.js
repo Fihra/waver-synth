@@ -10,13 +10,14 @@ export const SynthManagerProvider = ({ children }) => {
         dispatch({
             type: "SET_SYNTH",
             payload: {
-                currentSynth: synthName
+                currentSynth: synthName,
             }
         });
     };
 
     const value = {
         currentSynth: state.currentSynth,
+        buttonActive: state.buttonActive,
         setSynth
     }
 
