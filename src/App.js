@@ -32,7 +32,6 @@ const App = () => {
           <div className="synth-spectrum">
           </div>
          </div>
-         </SynthManagerProvider>
          <div className="section-two">
           <div className="effects-container">
               <ul>
@@ -53,6 +52,7 @@ const App = () => {
           <Keyboard />
           <div className="piano-knob"><KnobComponent btnLabel={knob.reverb.btnLabel}/></div>
          </div>
+         </SynthManagerProvider>
     </div>
   );
 }

@@ -5,7 +5,6 @@ export const SynthManagerProvider = ({ children }) => {
     const [state, dispatch] = useReducer(synthManagerReducer, initialState);
 
     const setSynth = (synthName) => {
-        // console.log("in reducer: ", synthName);
         console.log("Previous state before change: ", state.currentSynth);
         dispatch({
             type: "SET_SYNTH",

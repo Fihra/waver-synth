@@ -1,7 +1,8 @@
-import React, { useContext } from 'react';
+import React, { useEffect } from 'react';
 import { Piano, KeyboardShortcuts, MidiNumbers } from 'react-piano';
 import 'react-piano/dist/styles.css';
 import * as Tone from 'tone';
+import useSynth from '../context/SynthManagerContext';
 
 const Keyboard = () => {
     const firstNote = MidiNumbers.fromNote('c3');
@@ -12,7 +13,19 @@ const Keyboard = () => {
         keyboardConfig: KeyboardShortcuts.HOME_ROW,
     });
 
+    const { currentSynth } = useSynth();
+
+    useEffect(() => {
+
+    }, [])
+
     const toneSynth = new Tone.PolySynth();
+    toneSynth.set({
+        oscillator: {
+            type: currentSynth.toLowerCase()
+        }
+    })
+     
 
     const playNote = (note) => {
         const timeNow = Tone.now();

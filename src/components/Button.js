@@ -5,8 +5,6 @@ const Button = (props) => {
     const [ buttonActive, setButtonActive ] = useState("");
     const { setSynth, currentSynth} = useSynth();
 
-    console.log(currentSynth);
-
     const handleChange = () => {
         console.log("change active");
         if(buttonActive !== "active") {
