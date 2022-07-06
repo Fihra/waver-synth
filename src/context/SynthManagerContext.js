@@ -5,7 +5,6 @@ export const SynthManagerProvider = ({ children }) => {
     const [state, dispatch] = useReducer(synthManagerReducer, initialState);
 
     const setSynth = (synthName) => {
-        console.log("Previous state before change: ", state.currentSynth);
         dispatch({
             type: "SET_SYNTH",
             payload: {
@@ -23,12 +22,22 @@ export const SynthManagerProvider = ({ children }) => {
         })
     }
 
+    const setDelay = (delayValue) => {
+        dispatch({
+            type: "SET_DELAY",
+            payload: {
+                delay: delayValue
+            }
+        })
+    }
+
     const value = {
         currentSynth: state.currentSynth,
         buttonActive: state.buttonActive,
         settings: state.settings,
         setSynth,
-        setVolume
+        setVolume,
+        setDelay
     }
 
     return <SynthManagerContext.Provider value={value}>{children}</SynthManagerContext.Provider>

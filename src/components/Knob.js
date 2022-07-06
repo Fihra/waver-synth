@@ -13,17 +13,17 @@ const KnobComponent = (prop) => {
         fontSize: 35
     }
 
-    const { setVolume, settings } = useSynth();
+    const { setVolume, setDelay, settings } = useSynth();
 
     const showValue = (value) => {
         let newValue = value / 100;
         setvalue(newValue);
         switch(prop.btnLabel){
             case "Volume":
-                console.log("Volume");
-                console.log(value - 50);
                 setVolume(value - 60);
                 break;
+            case "Delay":
+                setDelay(Math.floor(value / 10));
             default:
                 break;
         }

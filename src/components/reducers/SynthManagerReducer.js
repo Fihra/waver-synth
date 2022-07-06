@@ -4,6 +4,7 @@ export const initialState = {
     currentSynth: "Sine",
     settings: {
         volume: -60,
+        delay: 0,
         reverb: 0
     }
 }
@@ -22,6 +23,14 @@ const synthManagerReducer = (state, action) => {
                 settings: {
                     ...state.settings,
                     volume: payload.volume
+                }
+            }
+        case SYNTHACTIONS.SET_DELAY:
+            return {
+                ...state,
+                settings: {
+                    ...state.settings,
+                    delay: payload.delay
                 }
             }
         default:

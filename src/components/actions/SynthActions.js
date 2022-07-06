@@ -1,6 +1,7 @@
 const SYNTHACTIONS = {
     SET_SYNTH: "SET_SYNTH",
-    SET_VOLUME: "SET_VOLUME"
+    SET_VOLUME: "SET_VOLUME",
+    SET_DELAY: "SET_DELAY"
 }
 
 export default SYNTHACTIONS;

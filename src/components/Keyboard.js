@@ -15,22 +15,21 @@ const Keyboard = () => {
 
     const { currentSynth, settings } = useSynth();
 
-    useEffect(() => {
-
-    }, [])
-
     const toneSynth = new Tone.PolySynth();
     toneSynth.set({
         oscillator: {
             type: currentSynth.toLowerCase()
         }
-    })
-     
+    })  
 
     const playNote = (note) => {
         const timeNow = Tone.now();
         let savedNote = Tone.Frequency(note, "midi").toNote();
         toneSynth.volume.value = settings.volume;
+
+        const delay = new Tone.Delay(settings.delay).toDestination();
+        toneSynth.connect(delay);
+        
         toneSynth.triggerAttack(savedNote, timeNow).toDestination();
     }
 
