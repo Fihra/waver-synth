@@ -13,7 +13,7 @@ const KnobComponent = (prop) => {
         fontSize: 35
     }
 
-    const { setVolume, setDelay, settings } = useSynth();
+    const { setVolume, setDelay, setDistortion, settings } = useSynth();
 
     const showValue = (value) => {
         let newValue = value / 100;
@@ -24,6 +24,10 @@ const KnobComponent = (prop) => {
                 break;
             case "Delay":
                 setDelay(Math.floor(value / 10));
+                break;
+            case "Distortion":
+                setDistortion((Math.floor(value /10) * 0.1).toFixed(2));
+                break;
             default:
                 break;
         }

@@ -31,13 +31,23 @@ export const SynthManagerProvider = ({ children }) => {
         })
     }
 
+    const setDistortion = (distortionValue) => {
+        dispatch({
+            type: "SET_DISTORTION",
+            payload: {
+                distortion: distortionValue
+            }
+        })
+    }
+
     const value = {
         currentSynth: state.currentSynth,
         buttonActive: state.buttonActive,
         settings: state.settings,
         setSynth,
         setVolume,
-        setDelay
+        setDelay,
+        setDistortion
     }
 
     return <SynthManagerContext.Provider value={value}>{children}</SynthManagerContext.Provider>

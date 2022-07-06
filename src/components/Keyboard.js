@@ -29,7 +29,13 @@ const Keyboard = () => {
 
         const delay = new Tone.Delay(settings.delay).toDestination();
         toneSynth.connect(delay);
-        
+
+        const distortion = new Tone.Distortion(settings.distortion).toDestination();
+        toneSynth.connect(distortion);
+
+        // const tremolo = new Tone.Tremolo(10).toDestination();
+        // toneSynth.connect(tremolo);
+
         toneSynth.triggerAttack(savedNote, timeNow).toDestination();
     }
 

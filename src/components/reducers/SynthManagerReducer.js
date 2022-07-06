@@ -5,6 +5,7 @@ export const initialState = {
     settings: {
         volume: -60,
         delay: 0,
+        distortion: 0,
         reverb: 0
     }
 }
@@ -31,6 +32,14 @@ const synthManagerReducer = (state, action) => {
                 settings: {
                     ...state.settings,
                     delay: payload.delay
+                }
+            }
+        case SYNTHACTIONS.SET_DISTORTION:
+            return {
+                ...state,
+                settings: {
+                    ...state.settings,
+                    distortion: payload.distortion
                 }
             }
         default:
