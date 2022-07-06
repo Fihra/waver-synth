@@ -14,10 +14,21 @@ export const SynthManagerProvider = ({ children }) => {
         });
     };
 
+    const setVolume = (volumeValue) => {
+        dispatch({
+            type: "SET_VOLUME",
+            payload: {
+                volume: volumeValue
+            }
+        })
+    }
+
     const value = {
         currentSynth: state.currentSynth,
         buttonActive: state.buttonActive,
-        setSynth
+        settings: state.settings,
+        setSynth,
+        setVolume
     }
 
     return <SynthManagerContext.Provider value={value}>{children}</SynthManagerContext.Provider>

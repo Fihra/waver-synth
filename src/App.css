@@ -9,6 +9,7 @@
 html {
   height: 100%;
   width: 100%;
+  max-height: 100%;
   /* margin-left: 250px;
   margin-right: 250px; */
 }
@@ -153,4 +154,8 @@ button:hover span {
 
 .piano-knob {
   padding-top: 50px;
+}
+
+footer {
+  margin-top: 50px;
 }

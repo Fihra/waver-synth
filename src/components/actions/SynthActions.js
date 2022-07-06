@@ -1,5 +1,6 @@
 const SYNTHACTIONS = {
-    SET_SYNTH: "SET_SYNTH"
+    SET_SYNTH: "SET_SYNTH",
+    SET_VOLUME: "SET_VOLUME"
 }
 
 export default SYNTHACTIONS;

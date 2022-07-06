@@ -13,7 +13,7 @@ const Keyboard = () => {
         keyboardConfig: KeyboardShortcuts.HOME_ROW,
     });
 
-    const { currentSynth } = useSynth();
+    const { currentSynth, settings } = useSynth();
 
     useEffect(() => {
 
@@ -30,7 +30,7 @@ const Keyboard = () => {
     const playNote = (note) => {
         const timeNow = Tone.now();
         let savedNote = Tone.Frequency(note, "midi").toNote();
-
+        toneSynth.volume.value = settings.volume;
         toneSynth.triggerAttack(savedNote, timeNow).toDestination();
     }
 

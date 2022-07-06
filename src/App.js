@@ -5,6 +5,7 @@ import { useContext } from 'react';
 import Button from './components/Button';
 import KnobComponent from './components/Knob';
 import Keyboard from './components/Keyboard';
+import Footer from './components/Footer';
 import { SynthManagerProvider } from './context/SynthManagerContext';
 
 const App = () => {
@@ -53,6 +54,7 @@ const App = () => {
           <div className="piano-knob"><KnobComponent btnLabel={knob.reverb.btnLabel}/></div>
          </div>
          </SynthManagerProvider>
+         <Footer />
     </div>
   );
 }

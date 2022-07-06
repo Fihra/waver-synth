@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Knob from 'react-simple-knob';
+import useSynth from '../context/SynthManagerContext';
 
 const KnobComponent = (prop) => {
     const [value, setvalue ] = useState(0);
@@ -12,9 +13,20 @@ const KnobComponent = (prop) => {
         fontSize: 35
     }
 
+    const { setVolume, settings } = useSynth();
+
     const showValue = (value) => {
         let newValue = value / 100;
         setvalue(newValue);
+        switch(prop.btnLabel){
+            case "Volume":
+                console.log("Volume");
+                console.log(value - 50);
+                setVolume(value - 60);
+                break;
+            default:
+                break;
+        }
     }
 
     const showReverbKnob = () => {
