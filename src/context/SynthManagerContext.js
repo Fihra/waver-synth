@@ -40,6 +40,15 @@ export const SynthManagerProvider = ({ children }) => {
         })
     }
 
+    const setTremolo = (tremoloValue) => {
+        dispatch({
+            type: "SET_TREMOLO",
+            payload: {
+                tremolo: tremoloValue
+            }
+        })
+    }
+
     const value = {
         currentSynth: state.currentSynth,
         buttonActive: state.buttonActive,
@@ -47,7 +56,8 @@ export const SynthManagerProvider = ({ children }) => {
         setSynth,
         setVolume,
         setDelay,
-        setDistortion
+        setDistortion,
+        setTremolo
     }
 
     return <SynthManagerContext.Provider value={value}>{children}</SynthManagerContext.Provider>

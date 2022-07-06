@@ -6,6 +6,7 @@ export const initialState = {
         volume: -60,
         delay: 0,
         distortion: 0,
+        tremolo: 0,
         reverb: 0
     }
 }
@@ -40,6 +41,14 @@ const synthManagerReducer = (state, action) => {
                 settings: {
                     ...state.settings,
                     distortion: payload.distortion
+                }
+            }
+        case SYNTHACTIONS.SET_TREMOLO:
+            return {
+                ...state,
+                settings: {
+                    ...state.settings,
+                    tremolo: payload.tremolo
                 }
             }
         default:

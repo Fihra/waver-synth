@@ -33,8 +33,12 @@ const Keyboard = () => {
         const distortion = new Tone.Distortion(settings.distortion).toDestination();
         toneSynth.connect(distortion);
 
-        // const tremolo = new Tone.Tremolo(10).toDestination();
-        // toneSynth.connect(tremolo);
+        // const chorus = new Tone.Chorus(4).toDestination();
+        // toneSynth.connect(chorus);
+
+        //TODO: Tremolo is still kinda buggy to use
+        const tremolo = new Tone.Tremolo(settings.tremolo).toDestination();
+        toneSynth.connect(tremolo);
 
         toneSynth.triggerAttack(savedNote, timeNow).toDestination();
     }
