@@ -17,7 +17,7 @@ const Keyboard = () => {
     const { currentSynth, settings } = useSynth();
     const { currentWaveform } = useWaveform();
 
-    const toneSynth = new Tone.PolySynth();
+    let toneSynth = new Tone.PolySynth();
     toneSynth.set({
         oscillator: {
             type: currentSynth.toLowerCase()
@@ -27,13 +27,26 @@ const Keyboard = () => {
     const playNote = (note) => {
         const timeNow = Tone.now();
         let savedNote = Tone.Frequency(note, "midi").toNote();
+        // toneSynth.volume.value = -60;
         toneSynth.volume.value = settings.volume;
 
-        const delay = new Tone.Delay(settings.delay).toDestination();
-        toneSynth.connect(delay);
+        // const reverb = new Tone.Reverb();
+        // toneSynth.connect(reverb);
 
-        const distortion = new Tone.Distortion(settings.distortion).toDestination();
-        toneSynth.connect(distortion);
+        // const compressor = new Tone.Compressor(-60, 3).toDestination();
+        // toneSynth.connect(compressor);
+
+        // const delay = new Tone.Delay(settings.delay).toDestination();
+        // toneSynth.connect(delay);
+        let distortion;
+
+        
+        if(settings.distortion > 0) {
+            distortion = new Tone.Distortion(settings.distortion).toDestination();
+            toneSynth.connect(distortion);
+        } else {
+            toneSynth.disconnect(distortion);
+        }
 
         // const chorus = new Tone.Chorus(4).toDestination();
         // toneSynth.connect(chorus);
@@ -48,21 +61,29 @@ const Keyboard = () => {
         //     baseFrequency: 1000
         // }).toDestination();
         // toneSynth.connect(phaser);
+        // const crusher = new Tone.BitCrusher(settings.bitcrusher).toDestination();
 
-        const testWaveform = new Tone.Waveform().toDestination();
-        toneSynth.connect(testWaveform);
-        console.log(testWaveform);
+        // if(settings.crusher === 1){
+        //     toneSynth.disconnect(crusher);
+        //     toneSynth.context._timeouts.cancel(0);
+        //     // toneSynth.releaseAll();
+        // } else {
+            
+        //     toneSynth.connect(crusher);
+        // }
+
+        // const testWaveform = new Tone.Waveform().toDestination();
+        // toneSynth.connect(testWaveform);
+        // console.log(testWaveform);
 
         toneSynth.triggerAttack(savedNote, timeNow).toDestination();
-
-        
-        
     }
 
     const stopNote = (note) => {
         const timeNow = Tone.now();
         let savedNote = Tone.Frequency(note, "midi").toNote();
         toneSynth.triggerRelease(savedNote, timeNow + 0.1);
+        toneSynth.releaseAll();
     }
 
     return(

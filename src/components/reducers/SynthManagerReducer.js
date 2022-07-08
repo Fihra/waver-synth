@@ -7,7 +7,8 @@ export const initialState = {
         delay: 0,
         distortion: 0,
         tremolo: 0,
-        reverb: 0
+        reverb: 0,
+        bitcrusher: 1
     }
 }
 
@@ -49,6 +50,14 @@ const synthManagerReducer = (state, action) => {
                 settings: {
                     ...state.settings,
                     tremolo: payload.tremolo
+                }
+            }
+        case SYNTHACTIONS.SET_BITCRUSHER:
+            return {
+                ...state,
+                settings: {
+                    ...state.settings,
+                    bitcrusher: payload.bitcrusher
                 }
             }
         default:

@@ -49,6 +49,15 @@ export const SynthManagerProvider = ({ children }) => {
         })
     }
 
+    const setBitcrusher = (bitcrusherValue) => {
+        dispatch({
+            type: "SET_BITCRUSHER",
+            payload: {
+                bitcrusher: bitcrusherValue
+            }
+        })
+    }
+
     const value = {
         currentSynth: state.currentSynth,
         buttonActive: state.buttonActive,
@@ -57,7 +66,8 @@ export const SynthManagerProvider = ({ children }) => {
         setVolume,
         setDelay,
         setDistortion,
-        setTremolo
+        setTremolo,
+        setBitcrusher,
     }
 
     return <SynthManagerContext.Provider value={value}>{children}</SynthManagerContext.Provider>

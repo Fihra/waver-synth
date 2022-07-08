@@ -13,7 +13,7 @@ const KnobComponent = (prop) => {
         fontSize: 35
     }
 
-    const { setVolume, setDelay, setDistortion, setTremolo, settings } = useSynth();
+    const { setVolume, setDelay, setDistortion, setTremolo, setBitcrusher, settings } = useSynth();
 
     const showValue = (value) => {
         let newValue = value / 100;
@@ -32,6 +32,10 @@ const KnobComponent = (prop) => {
                 console.log(Math.floor(value / 10));
                 setTremolo(Math.floor(value / 10));
                 break;
+            case "Bitcrusher":
+                let crushVal = Math.floor(value/10);
+                let checkBit = crushVal <= 1 ? 1 : crushVal;
+                setBitcrusher(checkBit);
             default:
                 break;
         }
