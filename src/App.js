@@ -7,6 +7,7 @@ import KnobComponent from './components/Knob';
 import Keyboard from './components/Keyboard';
 import Footer from './components/Footer';
 import { SynthManagerProvider } from './context/SynthManagerContext';
+import { useRef } from 'react';
 
 const App = () => {
   const synth = useContext(SynthContext);
@@ -16,6 +17,12 @@ const App = () => {
     return Object.keys(knobCollection).map((item, i) => {
       return <li><KnobComponent key={i} btnLabel={knobCollection[item].btnLabel}/></li>
     })
+  }
+
+  const canvasRef = useRef(null);
+
+  const draw = () => {
+    console.log("here")
   }
 
   return (
@@ -30,8 +37,11 @@ const App = () => {
               })}
             </ul>
           </div>
-          <div className="synth-spectrum">
-          </div>
+          <canvas className="synth-spectrum" ref={canvasRef} onClick={(e) => {
+            const canvas = canvasRef.current;
+            const ctx = canvas.getContext('2d');
+            draw();
+          }}/>
          </div>
          <div className="section-two">
           <div className="effects-container">
@@ -54,7 +64,7 @@ const App = () => {
           <div className="piano-knob"><KnobComponent btnLabel={knob.reverb.btnLabel}/></div>
          </div>
          </SynthManagerProvider>
-         <Footer />
+         <Footer /> 
     </div>
   );
 }
