@@ -39,13 +39,20 @@ const Keyboard = () => {
         // const delay = new Tone.Delay(settings.delay).toDestination();
         // toneSynth.connect(delay);
         let distortion;
+        let isConnected = false;
 
-        
         if(settings.distortion > 0) {
-            distortion = new Tone.Distortion(settings.distortion).toDestination();
-            toneSynth.connect(distortion);
+            if(isConnected === false){
+                distortion = new Tone.Distortion(settings.distortion).toDestination();
+                toneSynth.connect(distortion);
+            }
+            isConnected = true; 
         } else {
-            toneSynth.disconnect(distortion);
+            if(distortion){
+                toneSynth.disconnect(distortion);
+                distortion.dispose();
+                isConnected = false;
+            }
         }
 
         // const chorus = new Tone.Chorus(4).toDestination();
