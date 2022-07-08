@@ -58,16 +58,57 @@ export const SynthManagerProvider = ({ children }) => {
         })
     }
 
+    const setAttack = (attackValue) => {
+        dispatch({
+            type: "SET_ATTACK",
+            payload: {
+                attack: attackValue
+            }
+        })
+    }
+
+    const setDecay = (decayValue) => {
+        dispatch({
+            type: "SET_DECAY",
+            payload: {
+                decay: decayValue
+            }
+        })
+    }
+
+    const setSustain = (sustainValue) => {
+        dispatch({
+            type: "SET_SUSTAIN",
+            payload: {
+                sustain: sustainValue
+            }
+        })
+    }
+
+    const setRelease = (releaseValue) => {
+        dispatch({
+            type: "SET_RELEASE",
+            payload: {
+                release: releaseValue
+            }
+        })
+    }
+
     const value = {
         currentSynth: state.currentSynth,
         buttonActive: state.buttonActive,
         settings: state.settings,
+        adsr: state.adsr,
         setSynth,
         setVolume,
         setDelay,
         setDistortion,
         setTremolo,
         setBitcrusher,
+        setAttack,
+        setDecay,
+        setSustain,
+        setRelease
     }
 
     return <SynthManagerContext.Provider value={value}>{children}</SynthManagerContext.Provider>

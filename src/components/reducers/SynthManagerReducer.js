@@ -9,6 +9,12 @@ export const initialState = {
         tremolo: 0,
         reverb: 0,
         bitcrusher: 1
+    },
+    adsr: {
+        attack: 0,
+        decay: 0,
+        sustain: 0,
+        release: 0
     }
 }
 
@@ -58,6 +64,38 @@ const synthManagerReducer = (state, action) => {
                 settings: {
                     ...state.settings,
                     bitcrusher: payload.bitcrusher
+                }
+            }
+        case SYNTHACTIONS.SET_ATTACK:
+            return {
+                ...state,
+                adsr: {
+                    ...state.adsr,
+                    attack: payload.attack
+                }
+            }
+        case SYNTHACTIONS.SET_DECAY:
+            return {
+                ...state,
+                adsr: {
+                    ...state.adsr,
+                    decay: payload.decay
+                }
+            }
+        case SYNTHACTIONS.SET_SUSTAIN:
+            return {
+                ...state,
+                adsr: {
+                    ...state.adsr,
+                    sustain: payload.sustain
+                }
+            }
+        case SYNTHACTIONS.SET_RELEASE:
+            return {
+                ...state,
+                adsr: {
+                    ...state.adsr,
+                    release: payload.release
                 }
             }
         default:

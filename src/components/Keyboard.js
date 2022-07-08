@@ -14,13 +14,19 @@ const Keyboard = () => {
         keyboardConfig: KeyboardShortcuts.HOME_ROW,
     });
 
-    const { currentSynth, settings } = useSynth();
+    const { currentSynth, settings, adsr } = useSynth();
     const { currentWaveform } = useWaveform();
 
     let toneSynth = new Tone.PolySynth();
     toneSynth.set({
         oscillator: {
             type: currentSynth.toLowerCase()
+        },
+        envelope: {
+            attack: adsr.attack,
+            decay: adsr.decay,
+            sustain: adsr.sustain,
+            release: adsr.release
         }
     })  
 
@@ -30,6 +36,12 @@ const Keyboard = () => {
         // toneSynth.volume.value = -60;
         toneSynth.volume.value = settings.volume;
 
+        // let allSettings = Object.keys(settings);
+        // for(let i= 1; i < allSettings.length; i++){
+        //     console.log(allSettings[i] + settings[allSettings[i]]);
+        // }
+
+
         // const reverb = new Tone.Reverb();
         // toneSynth.connect(reverb);
 
@@ -38,22 +50,22 @@ const Keyboard = () => {
 
         // const delay = new Tone.Delay(settings.delay).toDestination();
         // toneSynth.connect(delay);
-        let distortion;
-        let isConnected = false;
+        // let distortion;
+        // let isConnected = false;
 
-        if(settings.distortion > 0) {
-            if(isConnected === false){
-                distortion = new Tone.Distortion(settings.distortion).toDestination();
-                toneSynth.connect(distortion);
-            }
-            isConnected = true; 
-        } else {
-            if(distortion){
-                toneSynth.disconnect(distortion);
-                distortion.dispose();
-                isConnected = false;
-            }
-        }
+        // if(settings.distortion > 0) {
+        //     if(isConnected === false){
+        //         distortion = new Tone.Distortion(settings.distortion).toDestination();
+        //         toneSynth.connect(distortion);
+        //     }
+        //     isConnected = true; 
+        // } else {
+        //     if(distortion){
+        //         toneSynth.disconnect(distortion);
+        //         distortion.dispose();
+        //         isConnected = false;
+        //     }
+        // }
 
         // const chorus = new Tone.Chorus(4).toDestination();
         // toneSynth.connect(chorus);

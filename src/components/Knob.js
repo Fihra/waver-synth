@@ -13,7 +13,11 @@ const KnobComponent = (prop) => {
         fontSize: 35
     }
 
-    const { setVolume, setDelay, setDistortion, setTremolo, setBitcrusher, settings } = useSynth();
+    const { setVolume, setDelay, setDistortion, setTremolo, setBitcrusher, setAttack, setDecay, setSustain, setRelease, settings } = useSynth();
+
+    const fixedDecimalNum = (value) => {
+        return Math.floor(value/10 * 0.1).toFixed(2);
+    }
 
     const showValue = (value) => {
         let newValue = value / 100;
@@ -36,6 +40,19 @@ const KnobComponent = (prop) => {
                 let crushVal = Math.floor(value/10);
                 let checkBit = crushVal <= 1 ? 1 : crushVal;
                 setBitcrusher(checkBit);
+                break;
+            case "Attack":
+                setAttack(newValue);
+                break;
+            case "Decay":
+                setDecay(newValue);
+                break;
+            case "Sustain":
+                setSustain(newValue);
+                break;
+            case "Release":
+                setRelease(newValue);
+                break;
             default:
                 break;
         }
