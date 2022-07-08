@@ -8,17 +8,17 @@ const knobs = {
         distortion: {
             btnLabel: "Distortion"
         },
-        chorus: {
-            btnLabel: "Chorus"
+        bitcrusher: {
+            btnLabel: "Bitcrusher"
         },
         tremolo: {
             btnLabel: "Tremolo"
         },
-        flanger: {
-            btnLabel: "Flanger" 
+        vibrato: {
+            btnLabel: "Vibrato" 
         },
-        phaser: {
-            btnLabel: "Phaser"
+        wah: {
+            btnLabel: "Wah"
         },
         lowpass: {
             btnLabel: "Low-Pass Filter"

@@ -3,6 +3,7 @@ import { Piano, KeyboardShortcuts, MidiNumbers } from 'react-piano';
 import 'react-piano/dist/styles.css';
 import * as Tone from 'tone';
 import useSynth from '../context/SynthManagerContext';
+import useWaveform from '../context/WaveformContext';
 
 const Keyboard = () => {
     const firstNote = MidiNumbers.fromNote('c3');
@@ -14,6 +15,7 @@ const Keyboard = () => {
     });
 
     const { currentSynth, settings } = useSynth();
+    const { currentWaveform } = useWaveform();
 
     const toneSynth = new Tone.PolySynth();
     toneSynth.set({
@@ -37,10 +39,24 @@ const Keyboard = () => {
         // toneSynth.connect(chorus);
 
         //TODO: Tremolo is still kinda buggy to use
-        const tremolo = new Tone.Tremolo(settings.tremolo).toDestination();
-        toneSynth.connect(tremolo);
+        // const tremolo = new Tone.Tremolo(settings.tremolo).toDestination();
+        // toneSynth.connect(tremolo);
+
+        // const phaser = new Tone.Phaser({
+        //     frequency: 10,
+        //     octaves: 3,
+        //     baseFrequency: 1000
+        // }).toDestination();
+        // toneSynth.connect(phaser);
+
+        const testWaveform = new Tone.Waveform().toDestination();
+        toneSynth.connect(testWaveform);
+        console.log(testWaveform);
 
         toneSynth.triggerAttack(savedNote, timeNow).toDestination();
+
+        
+        
     }
 
     const stopNote = (note) => {
