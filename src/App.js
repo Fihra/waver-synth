@@ -1,13 +1,15 @@
 import './App.css';
 import { SynthContext } from './context/SynthContext';
 import { KnobContext } from './context/KnobContext';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import Button from './components/Button';
 import KnobComponent from './components/Knob';
 import Keyboard from './components/Keyboard';
 import Footer from './components/Footer';
 import { SynthManagerProvider } from './context/SynthManagerContext';
-import { useRef } from 'react';
+// import { } from 'react-nexusui';
+import * as Tone from 'tone';
+import Nexus from 'nexusui';
 
 const App = () => {
   const synth = useContext(SynthContext);
@@ -19,10 +21,31 @@ const App = () => {
     })
   }
 
-  const canvasRef = useRef(null);
+  const music = Tone.getDestination();
+  // console.log(Nexus.Oscilloscope);
 
-  const draw = () => {
-    console.log("here")
+  useEffect(() => {
+    test();
+  }, []);
+
+  const test = () => {
+    
+    let checkCanvas = document.getElementById("synth-spectrum");
+    console.log(checkCanvas.children);
+    if(checkCanvas.children > 0){
+      return console.log(checkCanvas.children.map(c => {
+        return console.log(c)
+    }));
+    }
+
+    // console.log(checkCanvas.contains('canvas'));
+    // if(checkCanvas.contains())
+    // checkCanvas.removeChild(checkCanvas.lastChild);
+    // console.log(checkCanvas);
+    let oscilloscope = new Nexus.Oscilloscope('synth-spectrum');
+
+    oscilloscope.connect(music);
+    // return checkCanvas.children[0];
   }
 
   return (
@@ -37,11 +60,7 @@ const App = () => {
               })}
             </ul>
           </div>
-          <canvas className="synth-spectrum" ref={canvasRef} onClick={(e) => {
-            const canvas = canvasRef.current;
-            const ctx = canvas.getContext('2d');
-            draw();
-          }}/>
+          <div id="synth-spectrum"></div>
          </div>
          <div className="section-two">
           <div className="effects-container">

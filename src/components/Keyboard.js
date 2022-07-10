@@ -30,6 +30,30 @@ const Keyboard = () => {
         }
     })  
 
+    // window.addEventListener('keydown', (e) => {
+    //     console.log(e.code);
+    //     if(e.code === "Digit1"){
+    //         toneSynth.releaseAll();
+    //     }
+
+    //     if(toneSynth.disposed()){
+    //         toneSynth = new Tone.PolySynth();
+    //         toneSynth.set({
+    //             oscillator: {
+    //                 type: currentSynth.toLowerCase()
+    //             },
+    //             envelope: {
+    //                 attack: adsr.attack,
+    //                 decay: adsr.decay,
+    //                 sustain: adsr.sustain,
+    //                 release: adsr.release
+    //             }
+    //         })  
+    //     }
+
+        
+    // })
+
     const playNote = (note) => {
         const timeNow = Tone.now();
         let savedNote = Tone.Frequency(note, "midi").toNote();
