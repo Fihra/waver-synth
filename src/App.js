@@ -1,15 +1,14 @@
 import './App.css';
 import { SynthContext } from './context/SynthContext';
 import { KnobContext } from './context/KnobContext';
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useRef } from 'react';
 import Button from './components/Button';
 import KnobComponent from './components/Knob';
 import Keyboard from './components/Keyboard';
 import Footer from './components/Footer';
-import { SynthManagerProvider } from './context/SynthManagerContext';
-// import { } from 'react-nexusui';
+import { SynthManagerProvider } from './context/SynthManagerContext'; 
 import * as Tone from 'tone';
-import Nexus from 'nexusui';
+import AudioOscilloscope from 'audio-oscilloscope';
 
 const App = () => {
   const synth = useContext(SynthContext);
@@ -21,32 +20,24 @@ const App = () => {
     })
   }
 
-  const music = Tone.getDestination();
-  // console.log(Nexus.Oscilloscope);
+  let waveform = new Tone.Analyser('waveform', 1024);
+
+  waveform.connect(Tone.getDestination());
 
   useEffect(() => {
-    test();
-  }, []);
+    let oscilloscope = AudioOscilloscope(document.getElementById('synth-spectrum'), {
+      canvasContext: {
+        lineWidth: 2,
+        fillStyle: 'rgb(0, 0, 0)',
+        strokeStyle: '#63A0AC'
+      }
+    });
+    oscilloscope.addSource(Tone.getDestination());
+  
+    oscilloscope.draw();
 
-  const test = () => {
-    
-    let checkCanvas = document.getElementById("synth-spectrum");
-    console.log(checkCanvas.children);
-    if(checkCanvas.children > 0){
-      return console.log(checkCanvas.children.map(c => {
-        return console.log(c)
-    }));
-    }
 
-    // console.log(checkCanvas.contains('canvas'));
-    // if(checkCanvas.contains())
-    // checkCanvas.removeChild(checkCanvas.lastChild);
-    // console.log(checkCanvas);
-    let oscilloscope = new Nexus.Oscilloscope('synth-spectrum');
-
-    oscilloscope.connect(music);
-    // return checkCanvas.children[0];
-  }
+  });
 
   return (
     <div className="App">
@@ -60,7 +51,7 @@ const App = () => {
               })}
             </ul>
           </div>
-          <div id="synth-spectrum"></div>
+          <canvas id="synth-spectrum"/>
          </div>
          <div className="section-two">
           <div className="effects-container">
