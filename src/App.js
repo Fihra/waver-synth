@@ -28,15 +28,13 @@ const App = () => {
     let oscilloscope = AudioOscilloscope(document.getElementById('synth-spectrum'), {
       canvasContext: {
         lineWidth: 2,
-        fillStyle: 'rgb(0, 0, 0)',
+        fillStyle: '#355242',
         strokeStyle: '#63A0AC'
       }
     });
+
     oscilloscope.addSource(Tone.getDestination());
-  
     oscilloscope.draw();
-
-
   });
 
   return (

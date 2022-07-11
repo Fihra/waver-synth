@@ -30,6 +30,8 @@ const Keyboard = () => {
         }
     })  
 
+    let distortion = new Tone.Distortion(settings.distortion).toDestination();
+
     // window.addEventListener('keydown', (e) => {
     //     console.log(e.code);
     //     if(e.code === "Digit1"){
@@ -64,6 +66,18 @@ const Keyboard = () => {
         // for(let i= 1; i < allSettings.length; i++){
         //     console.log(allSettings[i] + settings[allSettings[i]]);
         // }
+        let distortionConnected = false;
+
+        if(settings.distortion > 0) {
+            distortionConnected = true;
+            toneSynth.connect(distortion);
+        } else {
+            if(distortionConnected){
+                toneSynth.disconnect(distortion);
+                distortionConnected = false;
+            }
+           
+        }
 
 
         // const reverb = new Tone.Reverb();
