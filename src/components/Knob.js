@@ -20,11 +20,20 @@ const KnobComponent = (prop) => {
     }
 
     const showValue = (value) => {
-        let newValue = value / 100;
+        let newValue = (value / 100) * 0.01;
         setvalue(newValue);
         switch(prop.btnLabel){
             case "Volume":
-                setVolume(value - 60);
+                let cap;
+                
+                if(value - 60 > -10) {
+                    cap = -10;
+                } else {
+                    cap = value - 60;
+                }
+                console.log(cap);
+                setVolume(cap);
+                // setVolume(value -60);
                 break;
             case "Delay":
                 setDelay(Math.floor(value / 10));
@@ -42,6 +51,7 @@ const KnobComponent = (prop) => {
                 setBitcrusher(checkBit);
                 break;
             case "Attack":
+                console.log("Attack: ", newValue);
                 setAttack(newValue);
                 break;
             case "Decay":

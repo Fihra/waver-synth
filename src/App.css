@@ -15,9 +15,13 @@ html {
 }
 
 body {
+  height: 100%;
   margin: 0;
+
   background: rgb(0,127,127);
   background: linear-gradient(0deg, rgba(0,127,127,1) 0%, rgba(255,255,255,1) 100%);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
   /* font-family: 'Arima', cursive; */
 }
 

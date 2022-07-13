@@ -17,67 +17,112 @@ const Keyboard = () => {
     const { currentSynth, settings, adsr } = useSynth();
     const { currentWaveform } = useWaveform();
 
-    let toneSynth = new Tone.PolySynth();
+    let toneSynth = new Tone.PolySynth({
+        maxPolyphony: 32
+    });
+
+    // let autoFilter = new Tone.Reverb(5).toDestination();
+    // console.log(toneSynth);
+    
+
+    // useEffect(() => {
+    //     toneSynth.releaseAll();
+    //     toneSynth.set({
+    //         envelope: {
+    //             attack: adsr.attack,
+    //             decay: adsr.decay,
+    //             sustain: adsr.sustain,
+    //             release: adsr.release
+    //         }
+
+    //     })
+    // }, [adsr])
+
+    // let amplitudeEnvelope = new Tone.AmplitudeEnvelope({
+    //             attack: adsr.attack,
+    //             decay: adsr.decay,
+    //             sustain: adsr.sustain,
+    //             release: adsr.release   
+    // }).toDestination();
+
+    // toneSynth.connect(amplitudeEnvelope);
+
     toneSynth.set({
         oscillator: {
             type: currentSynth.toLowerCase()
-        },
-        envelope: {
-            attack: adsr.attack,
-            decay: adsr.decay,
-            sustain: adsr.sustain,
-            release: adsr.release
         }
     })  
 
-    let distortion = new Tone.Distortion(settings.distortion).toDestination();
+    const resetSynth = () => {
+        toneSynth = new Tone.PolySynth();
+        toneSynth.set({
+        oscillator: {
+            type: currentSynth.toLowerCase()
+        },
+        }) 
+    }
 
-    // window.addEventListener('keydown', (e) => {
-    //     console.log(e.code);
-    //     if(e.code === "Digit1"){
-    //         toneSynth.releaseAll();
-    //     }
+    window.addEventListener('keydown', (e) => {
+        if(e.code === "Escape"){
+            toneSynth.releaseAll();
+            toneSynth.dispose();
+            resetSynth();
+            if(toneSynth.disposed()){
+                resetSynth();
+            } 
+        }
+    })
 
-    //     if(toneSynth.disposed()){
-    //         toneSynth = new Tone.PolySynth();
-    //         toneSynth.set({
-    //             oscillator: {
-    //                 type: currentSynth.toLowerCase()
-    //             },
-    //             envelope: {
-    //                 attack: adsr.attack,
-    //                 decay: adsr.decay,
-    //                 sustain: adsr.sustain,
-    //                 release: adsr.release
-    //             }
-    //         })  
-    //     }
+    const changeOctave = () => {
 
-        
-    // })
+    }
 
     const playNote = (note) => {
         const timeNow = Tone.now();
-        let savedNote = Tone.Frequency(note, "midi").toNote();
-        // toneSynth.volume.value = -60;
+        let savedNote = Tone.Frequency(note + 12, "midi").toNote();
         toneSynth.volume.value = settings.volume;
+        toneSynth.volume.linearRampToValueAtTime(settings.volume);
 
-        // let allSettings = Object.keys(settings);
-        // for(let i= 1; i < allSettings.length; i++){
-        //     console.log(allSettings[i] + settings[allSettings[i]]);
+
+
+        
+        // toneSynth.connect(amplitudeEnvelope);
+
+        // toneSynth.connect(autoFilter);
+
+        // toneSynth.set({
+        //     envelope: {
+        //         attack: adsr.attack,
+        //         decay: adsr.decay,
+        //         sustain: adsr.sustain,
+        //         release: adsr.release
+        //     }
+        // })
+        // autoWah.Q.value = 6;
+        // toneSynth.connect(autoWah);
+
+
+        // if(settings.distortion < 0){
+        //     distortion.set({wet:0.1});
+        //     toneSynth.disconnect(distortion);
+        // } else{
+        //     distortion.set({wet: 1.0});
         // }
-        let distortionConnected = false;
 
-        if(settings.distortion > 0) {
-            distortionConnected = true;
-            toneSynth.connect(distortion);
-        } else {
-            if(distortionConnected){
-                toneSynth.disconnect(distortion);
-                distortionConnected = false;
-            }
-           
-        }
+        // toneSynth.connect(distortion);
+
+
+
+        // if(settings.distortion > 0) {
+        //     toneSynth.connect(distortion);
+        //     distortion.set({wet: 0.1});
+        // } else {
+        //     distortion.set({
+        //         wet: 0
+        //     })
+        //     toneSynth.disconnect(distortion); 
+        // }  
+        
 
 
         // const reverb = new Tone.Reverb();
@@ -105,9 +150,6 @@ const Keyboard = () => {
         //     }
         // }
 
-        // const chorus = new Tone.Chorus(4).toDestination();
-        // toneSynth.connect(chorus);
-
         //TODO: Tremolo is still kinda buggy to use
         // const tremolo = new Tone.Tremolo(settings.tremolo).toDestination();
         // toneSynth.connect(tremolo);
@@ -129,18 +171,13 @@ const Keyboard = () => {
         //     toneSynth.connect(crusher);
         // }
 
-        // const testWaveform = new Tone.Waveform().toDestination();
-        // toneSynth.connect(testWaveform);
-        // console.log(testWaveform);
-
         toneSynth.triggerAttack(savedNote, timeNow).toDestination();
     }
 
     const stopNote = (note) => {
         const timeNow = Tone.now();
-        let savedNote = Tone.Frequency(note, "midi").toNote();
-        toneSynth.triggerRelease(savedNote, timeNow + 0.1);
-        toneSynth.releaseAll();
+        let savedNote = Tone.Frequency(note + 12, "midi").toNote();
+        toneSynth.triggerRelease(savedNote, timeNow + adsr.sustain);
     }
 
     return(

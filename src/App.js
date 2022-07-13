@@ -58,14 +58,14 @@ const App = () => {
               </ul>
           </div>
          </div>
-         <div className="section-three">
+         {/* <div className="section-three">
           <div className="adsr-spectrum"></div>
           <div className="adsr-container">
             <ul>
                 {showKnobs(knob.adsr)}
             </ul>
           </div>
-         </div>
+         </div> */}
          <div className="piano-container">
            <div className="piano-knob"><KnobComponent btnLabel={knob.volume.btnLabel}/></div>
           <Keyboard />
