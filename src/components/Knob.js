@@ -20,7 +20,7 @@ const KnobComponent = (prop) => {
     }
 
     const showValue = (value) => {
-        let newValue = (value / 100) * 0.01;
+        let newValue = (value / 100) * 0.1;
         setvalue(newValue);
         switch(prop.btnLabel){
             case "Volume":
@@ -36,6 +36,7 @@ const KnobComponent = (prop) => {
                 // setVolume(value -60);
                 break;
             case "Delay":
+                console.log("delay: ", Math.floor(value / 10));
                 setDelay(Math.floor(value / 10));
                 break;
             case "Distortion":

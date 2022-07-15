@@ -20,6 +20,31 @@ const Keyboard = () => {
     let toneSynth = new Tone.PolySynth({
         maxPolyphony: 32
     });
+    const pingPong = new Tone.PingPongDelay("4n", 0.2).toDestination();
+    // toneSynth.connect(pingPong);
+
+    const chorus = new Tone.Chorus(4, 2.5, 0.5).toDestination();
+    // toneSynth.connect(chorus);
+
+    const distortion = new Tone.Distortion(0.5).toDestination();
+    toneSynth.connect(distortion);
+
+    // const env = new Tone.AmplitudeEnvelope({
+    //     attack: 0.2,
+    //     decay: 0.2,
+    //     sustain: 1.0,
+    //     release: 0.8
+    // }).toDestination();
+    // toneSynth.connect(env);
+
+    // const autoWah = new Tone.AutoWah({
+    //     baseFrequency: 100, 
+    //     octaves: 5,
+    //     sensitivity: -30
+    // }).toDestination();
+    // toneSynth.connect(autoWah);
+
+    // toneSynth.connect(freqEnv);
 
     // let autoFilter = new Tone.Reverb(5).toDestination();
     // console.log(toneSynth);
@@ -53,6 +78,18 @@ const Keyboard = () => {
         }
     })  
 
+    // toneSynth.set({
+    //     envelope: {
+    //         attack: adsr.attack,
+    //         attackCurve: "linear",
+    //         decay: adsr.decay,
+    //         decayCurve: "exponential",
+    //         release: adsr.release,
+    //         releaseCurve: "exponential",
+    //         sustain: adsr.sustain
+    //     }
+    // })
+
     const resetSynth = () => {
         toneSynth = new Tone.PolySynth();
         toneSynth.set({
@@ -79,13 +116,10 @@ const Keyboard = () => {
 
     const playNote = (note) => {
         const timeNow = Tone.now();
-        let savedNote = Tone.Frequency(note + 12, "midi").toNote();
+        let savedNote = Tone.Frequency(note, "midi").toNote();
         toneSynth.volume.value = settings.volume;
         toneSynth.volume.linearRampToValueAtTime(settings.volume);
 
-
-
-        
         // toneSynth.connect(amplitudeEnvelope);
 
         // toneSynth.connect(autoFilter);
@@ -111,8 +145,6 @@ const Keyboard = () => {
 
         // toneSynth.connect(distortion);
 
-
-
         // if(settings.distortion > 0) {
         //     toneSynth.connect(distortion);
         //     distortion.set({wet: 0.1});
@@ -122,8 +154,6 @@ const Keyboard = () => {
         //     })
         //     toneSynth.disconnect(distortion); 
         // }  
-        
-
 
         // const reverb = new Tone.Reverb();
         // toneSynth.connect(reverb);
@@ -176,7 +206,7 @@ const Keyboard = () => {
 
     const stopNote = (note) => {
         const timeNow = Tone.now();
-        let savedNote = Tone.Frequency(note + 12, "midi").toNote();
+        let savedNote = Tone.Frequency(note, "midi").toNote();
         toneSynth.triggerRelease(savedNote, timeNow + adsr.sustain);
     }
 
