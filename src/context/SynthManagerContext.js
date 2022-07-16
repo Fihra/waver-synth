@@ -30,6 +30,15 @@ export const SynthManagerProvider = ({ children }) => {
             }
         })
     }
+    
+    const setWah = (wahValue) => {
+        dispatch({
+            type: "SET_WAH",
+            payload: {
+                wah: wahValue
+            }
+        })
+    }
 
     const setDistortion = (distortionValue) => {
         dispatch({
@@ -94,21 +103,64 @@ export const SynthManagerProvider = ({ children }) => {
         })
     }
 
+    const setLowEQ = (lowEQValue) => {
+        dispatch({
+            type: "SET_LOW_EQ",
+            payload: {
+                low: lowEQValue
+            }
+        })
+    }
+
+    const setMidEQ = (midEQValue) => {
+        dispatch({
+            type: "SET_MID_EQ",
+            payload: {
+                mid: midEQValue
+            }
+        })
+    }
+
+    const setHighEQ = (highEQValue) => {
+        dispatch({
+            type: "SET_HIGH_EQ",
+            payload: {
+                high: highEQValue
+            }
+        })
+    }
+
+    const setOctave = (octaveValue) => {
+        dispatch({
+            type: "SET_OCTAVE",
+            payload: {
+                octave: octaveValue
+            }
+        })
+    }
+
     const value = {
         currentSynth: state.currentSynth,
         buttonActive: state.buttonActive,
         settings: state.settings,
+        currentOctaves: state.currentOctaves,
         adsr: state.adsr,
+        eq: state.eq,
         setSynth,
         setVolume,
         setDelay,
+        setWah,
         setDistortion,
         setTremolo,
         setBitcrusher,
         setAttack,
         setDecay,
         setSustain,
-        setRelease
+        setRelease,
+        setLowEQ,
+        setMidEQ,
+        setHighEQ,
+        setOctave,
     }
 
     return <SynthManagerContext.Provider value={value}>{children}</SynthManagerContext.Provider>

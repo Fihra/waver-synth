@@ -5,26 +5,20 @@ const knobs = {
         delay: {
             btnLabel: "Delay"
         },
-        distortion: {
-            btnLabel: "Distortion"
-        },
-        bitcrusher: {
-            btnLabel: "Bitcrusher"
-        },
-        tremolo: {
-            btnLabel: "Tremolo"
-        },
-        vibrato: {
-            btnLabel: "Vibrato" 
-        },
+        // distortion: {
+        //     btnLabel: "Distortion"
+        // },
+        // bitcrusher: {
+        //     btnLabel: "Bitcrusher"
+        // },
+        // tremolo: {
+        //     btnLabel: "Tremolo"
+        // },
+        // vibrato: {
+        //     btnLabel: "Vibrato" 
+        // },
         wah: {
             btnLabel: "Wah"
-        },
-        lowpass: {
-            btnLabel: "Low-Pass Filter"
-        },
-        highpass: {
-            btnLabel: "High-Pass Filter"
         }
     },
     adsr: {
@@ -39,6 +33,17 @@ const knobs = {
         },
         release: {
             btnLabel: "Release"
+        }
+    },
+    eq: {
+        lowEQ: {
+            btnLabel: "Low"
+        },
+        midEQ: {
+            btnLabel: "Mid"
+        },
+        highEQ: {
+            btnLabel: "High"
         }
     },
     volume: {

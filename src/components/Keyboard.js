@@ -14,20 +14,32 @@ const Keyboard = () => {
         keyboardConfig: KeyboardShortcuts.HOME_ROW,
     });
 
-    const { currentSynth, settings, adsr } = useSynth();
+    const { currentSynth, settings, adsr, eq } = useSynth();
     const { currentWaveform } = useWaveform();
 
     let toneSynth = new Tone.PolySynth({
         maxPolyphony: 32
     });
-    const pingPong = new Tone.PingPongDelay("4n", 0.2).toDestination();
+    // const pingPong = new Tone.PingPongDelay("4n", settings.delay).toDestination();
     // toneSynth.connect(pingPong);
 
-    const chorus = new Tone.Chorus(4, 2.5, 0.5).toDestination();
+    // const chorus = new Tone.Chorus(4, 2.5, 0.5).toDestination();
+
+    // const autoWah = new Tone.AutoWah(5, 6, -40).toDestination();
+    // toneSynth.connect(autoWah);
+
+    // const eqNode = new Tone.EQ3({
+    //     low: eq.low,
+    //     mid: eq.mid,
+    //     high: eq.high
+    // }).toDestination();
+    // toneSynth.connect(eqNode);
+
     // toneSynth.connect(chorus);
 
-    const distortion = new Tone.Distortion(0.5).toDestination();
-    toneSynth.connect(distortion);
+    // const distortion = new Tone.Distortion(0.5).toDestination();
+    // toneSynth.connect(distortion);
+    
 
     // const env = new Tone.AmplitudeEnvelope({
     //     attack: 0.2,
@@ -120,6 +132,13 @@ const Keyboard = () => {
         toneSynth.volume.value = settings.volume;
         toneSynth.volume.linearRampToValueAtTime(settings.volume);
 
+        // autoWah.wet.value = settings.wah;
+
+        // eqNode.low.value = eq.low;
+        // eqNode.mid.value = eq.mid;
+        // eqNode.high.value = eq.high;
+
+
         // toneSynth.connect(amplitudeEnvelope);
 
         // toneSynth.connect(autoFilter);
@@ -207,7 +226,7 @@ const Keyboard = () => {
     const stopNote = (note) => {
         const timeNow = Tone.now();
         let savedNote = Tone.Frequency(note, "midi").toNote();
-        toneSynth.triggerRelease(savedNote, timeNow + adsr.sustain);
+        toneSynth.triggerRelease(savedNote, timeNow + 0.1);
     }
 
     return(

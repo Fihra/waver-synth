@@ -3,12 +3,13 @@ import useSynth from '../context/SynthManagerContext';
 
 const Button = (props) => {
     const [ buttonActive, setButtonActive ] = useState("");
-    const { setSynth, currentSynth} = useSynth();
+    const { setSynth, currentSynth } = useSynth();
 
     const handleChange = () => {
         console.log("change active");
+        setButtonActive("active")
         if(buttonActive !== "active") {
-            setButtonActive("active")
+            
             setSynth(props.btnLabel);
         } else {
             setButtonActive("");

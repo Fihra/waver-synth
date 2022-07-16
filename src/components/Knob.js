@@ -13,7 +13,7 @@ const KnobComponent = (prop) => {
         fontSize: 35
     }
 
-    const { setVolume, setDelay, setDistortion, setTremolo, setBitcrusher, setAttack, setDecay, setSustain, setRelease, settings } = useSynth();
+    const { setVolume, setDelay, setWah, setDistortion, setTremolo, setBitcrusher, setAttack, setDecay, setSustain, setRelease, setLowEQ, setMidEQ, setHighEQ, settings } = useSynth();
 
     const fixedDecimalNum = (value) => {
         return Math.floor(value/10 * 0.1).toFixed(2);
@@ -36,8 +36,11 @@ const KnobComponent = (prop) => {
                 // setVolume(value -60);
                 break;
             case "Delay":
-                console.log("delay: ", Math.floor(value / 10));
-                setDelay(Math.floor(value / 10));
+                console.log("delay: ", Math.floor(value / 10) * 0.1);
+                setDelay(Math.floor(value / 10) * 0.1);
+                break;
+            case "Wah":
+                setWah(Math.floor(value/10) * 0.1);
                 break;
             case "Distortion":
                 setDistortion((Math.floor(value /10) * 0.1).toFixed(2));
@@ -50,6 +53,16 @@ const KnobComponent = (prop) => {
                 let crushVal = Math.floor(value/10);
                 let checkBit = crushVal <= 1 ? 1 : crushVal;
                 setBitcrusher(checkBit);
+                break;
+            case "Low":
+                console.log("Low: ", (Math.floor(value/10) * 0.01).toFixed(2));
+                setLowEQ((Math.floor(value/10) * 0.01).toFixed(2));
+                break;
+            case "Mid":
+                setMidEQ((Math.floor(value/10) * 0.01).toFixed(2));
+                break;
+            case "High":
+                setHighEQ((Math.floor(value/10) * 0.01).toFixed(2));
                 break;
             case "Attack":
                 console.log("Attack: ", newValue);

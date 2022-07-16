@@ -59,7 +59,7 @@ h1, h2, h3, h4, h5, h6, p, span, button {
   margin-top: 24px;
 }
 
-button {
+.synth-container button {
   height: 35px;
   width: 100%;
   border-radius: 30px;
@@ -70,13 +70,13 @@ button {
   transition: 0.2s ease-out;
 }
 
-button span {
+.synth-container button span {
   transition: color 0.5s;
   font-weight: bold;
   color: white;
 }
 
-button:hover {
+.synth-container button:hover {
   background-position: left;
 }
 
@@ -84,11 +84,11 @@ button:hover {
   background-color: green;
 }
 
-button:hover span {
+.synth-container button:hover span {
   color: #355242;
 }
 
-.button-active {
+.synth-container .button-active {
   background-color: blue;
   background: linear-gradient(to left, blue 100%, blue 100%) right;
 }
@@ -143,6 +143,32 @@ button:hover span {
 
 .effects-container ul li:last-child {
   border-bottom: var(--knob-border);
+}
+
+/*Octaves */
+.octaves  {
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.octaves ul {
+  margin: 0 auto;
+  margin-bottom: 20px;
+}
+
+.octaves ul button {
+  width: 100px;
+  background-color: #355242;
+  font-weight: bold;
+  color: white;
+  height: 35px;
+  border-radius: 30px;
+}
+
+.octaves .button-active {
+  color: #355242;
+  background-color: #63A0AC;
 }
 
 /* ADSR */

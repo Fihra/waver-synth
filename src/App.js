@@ -1,18 +1,23 @@
 import './App.css';
 import { SynthContext } from './context/SynthContext';
+import { OctaveContext } from './context/OctaveContext';
 import { KnobContext } from './context/KnobContext';
-import { useContext, useEffect, useRef } from 'react';
+import { useContext, useEffect } from 'react';
 import Button from './components/Button';
+import OctaveButton from './components/OctaveButton';
 import KnobComponent from './components/Knob';
 import Keyboard from './components/Keyboard';
 import Footer from './components/Footer';
 import { SynthManagerProvider } from './context/SynthManagerContext'; 
 import * as Tone from 'tone';
 import AudioOscilloscope from 'audio-oscilloscope';
+import useSynth from './context/SynthManagerContext';
 
 const App = () => {
   const synth = useContext(SynthContext);
+  const octaves = useContext(OctaveContext);
   const knob = useContext(KnobContext);
+  const { currentOctaves } = useSynth();
 
   const showKnobs =(knobCollection) => {
     return Object.keys(knobCollection).map((item, i) => {
@@ -37,6 +42,12 @@ const App = () => {
     oscilloscope.draw();
   });
 
+  useEffect(() => {
+    
+  }, [octaves]);
+
+  console.log(currentOctaves);
+
   return (
     <div className="App">
         <h1 className="app-name">Waver Synth</h1>
@@ -55,7 +66,18 @@ const App = () => {
           <div className="effects-container">
               <ul>
                 {showKnobs(knob.effects)}
+                {showKnobs(knob.eq)}
               </ul>
+          </div>
+         </div>
+         <div className="section-three">
+          <div className="octaves">
+            <ul>
+              {Object.keys(currentOctaves).map((num, i) => {
+                console.log(currentOctaves[num])
+                return <OctaveButton key={i} btnLabel={currentOctaves[num]}/>
+              })}
+            </ul>
           </div>
          </div>
          {/* <div className="section-three">
