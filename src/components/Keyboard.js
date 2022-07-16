@@ -14,7 +14,7 @@ const Keyboard = () => {
         keyboardConfig: KeyboardShortcuts.HOME_ROW,
     });
 
-    const { currentSynth, settings, adsr, eq } = useSynth();
+    const { currentSynth, settings, adsr, eq, currentOctaves } = useSynth();
     const { currentWaveform } = useWaveform();
 
     let toneSynth = new Tone.PolySynth({
@@ -123,15 +123,34 @@ const Keyboard = () => {
     })
 
     const changeOctave = () => {
-
+        let outputOctave = currentOctaves.filter(oct => {
+            if(oct.isActive){
+                return oct;
+            }
+        })
+        switch(outputOctave[0].num){
+            case 1:
+                return -24;
+            case 2:
+                return -12;
+            case 3:
+                return 0;
+            case 4:
+                return 12;
+            case 5:
+                return 24;
+            default:
+                return 0;
+        }
     }
 
     const playNote = (note) => {
         const timeNow = Tone.now();
-        let savedNote = Tone.Frequency(note, "midi").toNote();
+        let savedNote = Tone.Frequency(note + changeOctave(), "midi").toNote();
         toneSynth.volume.value = settings.volume;
         toneSynth.volume.linearRampToValueAtTime(settings.volume);
 
+        changeOctave();
         // autoWah.wet.value = settings.wah;
 
         // eqNode.low.value = eq.low;
@@ -225,7 +244,7 @@ const Keyboard = () => {
 
     const stopNote = (note) => {
         const timeNow = Tone.now();
-        let savedNote = Tone.Frequency(note, "midi").toNote();
+        let savedNote = Tone.Frequency(note + changeOctave(), "midi").toNote();
         toneSynth.triggerRelease(savedNote, timeNow + 0.1);
     }
 
