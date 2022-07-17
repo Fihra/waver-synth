@@ -10,7 +10,7 @@ const Button = (props) => {
     }
 
     return(
-        <button className={btnLabel.isActive === true ? "button-active" : "not-active"} onClick={handleChange} value={btnLabel}>
+        <button className={btnLabel.isActive ? "button-active" : "not-active"} onClick={handleChange} value={btnLabel}>
             <span>{btnLabel.num}</span>
         </button>
     )

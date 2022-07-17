@@ -49,7 +49,7 @@ h1, h2, h3, h4, h5, h6, p, span, button {
 
 #synth-spectrum {
   flex-grow: 2;
-  height: 220px;
+  /* height: 220px; */
   border: 1px solid black;
   margin: 20px;
 }

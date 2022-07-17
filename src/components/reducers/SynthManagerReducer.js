@@ -40,7 +40,6 @@ const synthManagerReducer = (state, action) => {
     const { type, payload } = action;
     switch(type){
         case SYNTHACTIONS.SET_SYNTH:
-            console.log(payload)
             let newSynths = [...state.currentSynth].map((synth) => {
                 if(synth.synth !== payload.currentSynth){
                     synth.isActive = false;
@@ -50,16 +49,10 @@ const synthManagerReducer = (state, action) => {
                     return synth;
                 }
             })
-
             return {
                 ...state,
                 currentSynth: newSynths
             }
-
-            // return {
-            //     ...state,
-            //     currentSynth: payload.currentSynth
-            // }
         case SYNTHACTIONS.SET_VOLUME:
             return {
                 ...state,

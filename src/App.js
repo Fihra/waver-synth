@@ -2,7 +2,7 @@ import './App.css';
 import { SynthContext } from './context/SynthContext';
 import { OctaveContext } from './context/OctaveContext';
 import { KnobContext } from './context/KnobContext';
-import { useContext, useEffect } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import Button from './components/Button';
 import OctaveButton from './components/OctaveButton';
 import KnobComponent from './components/Knob';
@@ -14,6 +14,10 @@ import AudioOscilloscope from 'audio-oscilloscope';
 import useSynth from './context/SynthManagerContext';
 
 const App = () => {
+  const [ windowSize, setWindowSize ] = useState({
+    width: 100,
+    height: 220
+  })
   const synth = useContext(SynthContext);
   const knob = useContext(KnobContext);
   const { currentOctaves, currentSynth } = useSynth();
@@ -28,18 +32,57 @@ const App = () => {
 
   waveform.connect(Tone.getDestination());
 
+
+  const handleResize =() => {
+    setWindowSize({
+      width: window.innerWidth,
+      height: window.innerHeight
+    })
+  }
+
+  // window.addEventListener("resize", handleResize);
+
   useEffect(() => {
+    // console.log(windowSize);
     let oscilloscope = AudioOscilloscope(document.getElementById('synth-spectrum'), {
+      canvas: {
+        width: 300,
+        height: 50
+      },
       canvasContext: {
         lineWidth: 2,
-        fillStyle: '#355242',
+        fillStyle: 'black',
         strokeStyle: '#63A0AC'
       }
     });
 
+    
+  oscilloscope.on('drawFrame', function(osc) {
+    let c = osc.canvas;
+    let ctx = osc.canvasContext;
+    // var gradient = ctx.createLinearGradient(0,0,c.width,0);
+    // gradient.addColorStop(0, randomColor());
+    // gradient.addColorStop(0.5, randomColor());
+    // gradient.addColorStop(1, randomColor());
+    ctx.strokeStyle = "#355242";
+  });
+
     oscilloscope.addSource(Tone.getDestination());
     oscilloscope.draw();
   });
+
+  function randomColor() {
+    var i = 3;
+    var colors = [];
+    while(i--) {
+      colors.push(random(0,255));
+    }
+    return 'rgb(' + colors.join(',') + ')';
+  }
+
+  function random(a,b) {
+    return ((Math.random() * (b - a + 1) + a)|0);
+  }
 
   return (
     <div className="App">
