@@ -1,14 +1,19 @@
 import SYNTHACTIONS from "../actions/SynthActions";
 
 export const initialState = {
-    currentSynth: "Sine",
+    currentSynth: [
+        {synth: "Sine", isActive: false},
+        {synth: "Triangle", isActive: true},
+        {synth: "Square", isActive: false},
+        {synth: "Sawtooth", isActive: false}
+    ],
     settings: {
         volume: -60,
         delay: 0,
         wah: 0,
         distortion: 0,
         tremolo: 0,
-        reverb: 0,
+        reverb: 0.1,
         bitcrusher: 1
     },
     currentOctaves: [
@@ -35,10 +40,26 @@ const synthManagerReducer = (state, action) => {
     const { type, payload } = action;
     switch(type){
         case SYNTHACTIONS.SET_SYNTH:
+            console.log(payload)
+            let newSynths = [...state.currentSynth].map((synth) => {
+                if(synth.synth !== payload.currentSynth){
+                    synth.isActive = false;
+                    return synth;
+                } else {
+                    synth.isActive = true;
+                    return synth;
+                }
+            })
+
             return {
                 ...state,
-                currentSynth: payload.currentSynth
+                currentSynth: newSynths
             }
+
+            // return {
+            //     ...state,
+            //     currentSynth: payload.currentSynth
+            // }
         case SYNTHACTIONS.SET_VOLUME:
             return {
                 ...state,
@@ -47,6 +68,15 @@ const synthManagerReducer = (state, action) => {
                     volume: payload.volume
                 }
             }
+        case SYNTHACTIONS.SET_REVERB: {
+            return {
+                ...state,
+                settings: {
+                    ...state.settings,
+                    reverb: payload.reverb
+                }
+            }
+        }
         case SYNTHACTIONS.SET_DELAY:
             return {
                 ...state,

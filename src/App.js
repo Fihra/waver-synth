@@ -15,9 +15,8 @@ import useSynth from './context/SynthManagerContext';
 
 const App = () => {
   const synth = useContext(SynthContext);
-  const octaves = useContext(OctaveContext);
   const knob = useContext(KnobContext);
-  const { currentOctaves } = useSynth();
+  const { currentOctaves, currentSynth } = useSynth();
 
   const showKnobs =(knobCollection) => {
     return Object.keys(knobCollection).map((item, i) => {
@@ -42,12 +41,6 @@ const App = () => {
     oscilloscope.draw();
   });
 
-  useEffect(() => {
-    
-  }, [octaves]);
-
-  console.log(currentOctaves);
-
   return (
     <div className="App">
         <h1 className="app-name">Waver Synth</h1>
@@ -55,8 +48,8 @@ const App = () => {
         <div className="section-one">
           <div className="synth-container">
             <ul>
-              {Object.keys(synth).map((s, i) => {
-                return <Button key={i} btnLabel={synth[s].btnLabel} />
+              {Object.keys(currentSynth).map((synth, i) => {
+                return <Button key={i} btnLabel={currentSynth[synth]} />
               })}
             </ul>
           </div>
@@ -74,7 +67,6 @@ const App = () => {
           <div className="octaves">
             <ul>
               {Object.keys(currentOctaves).map((num, i) => {
-                console.log(currentOctaves[num])
                 return <OctaveButton key={i} btnLabel={currentOctaves[num]}/>
               })}
             </ul>

@@ -15,7 +15,6 @@ const Keyboard = () => {
     });
 
     const { currentSynth, settings, adsr, eq, currentOctaves } = useSynth();
-    const { currentWaveform } = useWaveform();
 
     let toneSynth = new Tone.PolySynth({
         maxPolyphony: 32
@@ -84,11 +83,56 @@ const Keyboard = () => {
 
     // toneSynth.connect(amplitudeEnvelope);
 
+    const changeSynth = () => {
+        let mainSynth = currentSynth.filter(synth => {
+            if(synth.isActive){
+                return synth;
+            }
+        })
+        console.log(currentSynth);
+        console.log(mainSynth);
+
+        switch(mainSynth[0].synth){
+            case "Sine":
+                return "sine";
+            case "Triangle":
+                return "triangle";
+            case "Square":
+                return "square";
+            case "Sawtooth":
+                return "sawtooth";
+            default:
+                return "sine";
+        }
+    }
+
     toneSynth.set({
         oscillator: {
-            type: currentSynth.toLowerCase()
+            type: changeSynth()
         }
     })  
+
+    // useEffect(() => {
+    //     changeSynth();
+    // }, [currentSynth])
+
+    // const reverb = new Tone.Reverb(0.1).toDestination();
+    // reverb.set({
+    //     decay: settings.reverb
+    // })
+    // toneSynth.connect(reverb);
+
+    // useEffect(() => {
+    //     reverb.set({
+    //         decay: settings.reverb
+    //     })
+    // }, [settings.reverb])
+
+    // reverb.set({
+    //     decay: settings.reverb
+    // })
+
+    // toneSynth.chain(reverb, Tone.Destination);
 
     // toneSynth.set({
     //     envelope: {
@@ -150,7 +194,7 @@ const Keyboard = () => {
         toneSynth.volume.value = settings.volume;
         toneSynth.volume.linearRampToValueAtTime(settings.volume);
 
-        changeOctave();
+        
         // autoWah.wet.value = settings.wah;
 
         // eqNode.low.value = eq.low;

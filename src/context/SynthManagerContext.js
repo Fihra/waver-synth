@@ -22,6 +22,15 @@ export const SynthManagerProvider = ({ children }) => {
         })
     }
 
+    const setReverb = (reverbValue) => {
+        dispatch({
+            type: "SET_REVERB",
+            payload: {
+                reverb: reverbValue
+            }
+        })
+    }
+
     const setDelay = (delayValue) => {
         dispatch({
             type: "SET_DELAY",
@@ -148,6 +157,7 @@ export const SynthManagerProvider = ({ children }) => {
         eq: state.eq,
         setSynth,
         setVolume,
+        setReverb,
         setDelay,
         setWah,
         setDistortion,

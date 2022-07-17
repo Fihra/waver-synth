@@ -80,17 +80,21 @@ h1, h2, h3, h4, h5, h6, p, span, button {
   background-position: left;
 }
 
-.synth-active {
+/* .synth-active {
   background-color: green;
-}
+} */
 
 .synth-container button:hover span {
   color: #355242;
 }
 
 .synth-container .button-active {
-  background-color: blue;
-  background: linear-gradient(to left, blue 100%, blue 100%) right;
+  background-color: #63A0AC;
+  background: linear-gradient(to left, #63A0AC 100%, #63A0AC 100%) right;
+}
+
+.synth-container .button-active span {
+  color: #355242;
 }
 
 
@@ -166,7 +170,7 @@ h1, h2, h3, h4, h5, h6, p, span, button {
   border-radius: 30px;
 }
 
-.octaves .button-active {
+.octaves .button-active, .synth-container .button-active {
   color: #355242;
   background-color: #63A0AC;
 }

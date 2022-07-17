@@ -13,7 +13,7 @@ const KnobComponent = (prop) => {
         fontSize: 35
     }
 
-    const { setVolume, setDelay, setWah, setDistortion, setTremolo, setBitcrusher, setAttack, setDecay, setSustain, setRelease, setLowEQ, setMidEQ, setHighEQ, settings } = useSynth();
+    const { setVolume, setReverb, setDelay, setWah, setDistortion, setTremolo, setBitcrusher, setAttack, setDecay, setSustain, setRelease, setLowEQ, setMidEQ, setHighEQ, settings } = useSynth();
 
     const fixedDecimalNum = (value) => {
         return Math.floor(value/10 * 0.1).toFixed(2);
@@ -25,15 +25,21 @@ const KnobComponent = (prop) => {
         switch(prop.btnLabel){
             case "Volume":
                 let cap;
-                
                 if(value - 60 > -10) {
                     cap = -10;
                 } else {
                     cap = value - 60;
                 }
-                console.log(cap);
                 setVolume(cap);
-                // setVolume(value -60);
+                break;
+            case "Reverb":
+                let reverbNum;
+                if(value/10 <= 0){
+                    reverbNum = 0.1;
+                } else {
+                    reverbNum = value/10;
+                }
+                setReverb(reverbNum);
                 break;
             case "Delay":
                 console.log("delay: ", Math.floor(value / 10) * 0.1);
