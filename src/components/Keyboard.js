@@ -16,8 +16,14 @@ const Keyboard = () => {
     const { currentSynth, settings, adsr, eq, currentOctaves } = useSynth();
 
     let toneSynth = new Tone.PolySynth({
-        maxPolyphony: 32
+        maxPolyphony: 32,
+        voice: Tone.Synth
     });
+    // const delay = new Tone.PingPongDelay({
+    //     delayTime: settings.delay,
+    //     maxDelay: 1
+    // }).toDestination();
+    // toneSynth.connect(delay);
 
     const changeSynth = () => {
         let mainSynth = currentSynth.filter(synth => {
@@ -39,11 +45,7 @@ const Keyboard = () => {
         }
     }
 
-    toneSynth.set({
-        oscillator: {
-            type: changeSynth()
-        }
-    })  
+
 
     const resetSynth = () => {
         toneSynth = new Tone.PolySynth();
@@ -92,6 +94,12 @@ const Keyboard = () => {
         let savedNote = Tone.Frequency(note + changeOctave(), "midi").toNote();
         toneSynth.volume.value = settings.volume;
         toneSynth.volume.linearRampToValueAtTime(settings.volume);
+
+        toneSynth.set({
+            oscillator: {
+                type: changeSynth()
+            },
+        })  
 
         toneSynth.triggerAttack(savedNote, timeNow).toDestination();
     }

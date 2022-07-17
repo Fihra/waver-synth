@@ -43,7 +43,7 @@ const KnobComponent = (prop) => {
                 break;
             case "Delay":
                 console.log("delay: ", Math.floor(value / 10) * 0.1);
-                setDelay(Math.floor(value / 10) * 0.1);
+                setDelay((Math.floor(value / 10) * 0.1).toFixed(2));
                 break;
             case "Wah":
                 setWah(Math.floor(value/10) * 0.1);
@@ -72,16 +72,16 @@ const KnobComponent = (prop) => {
                 break;
             case "Attack":
                 console.log("Attack: ", newValue);
-                setAttack(newValue);
+                setAttack(newValue.toFixed(2));
                 break;
             case "Decay":
-                setDecay(newValue);
+                setDecay(newValue.toFixed(2));
                 break;
             case "Sustain":
-                setSustain(newValue);
+                setSustain(newValue.toFixed(2));
                 break;
             case "Release":
-                setRelease(newValue);
+                setRelease(newValue.toFixed(2));
                 break;
             default:
                 break;

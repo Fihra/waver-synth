@@ -8,6 +8,7 @@ import OctaveButton from './components/OctaveButton';
 import KnobComponent from './components/Knob';
 import Keyboard from './components/Keyboard';
 import Footer from './components/Footer';
+import RecordButton from './components/RecordButton';
 import { SynthManagerProvider } from './context/SynthManagerContext'; 
 import * as Tone from 'tone';
 import AudioOscilloscope from 'audio-oscilloscope';
@@ -58,31 +59,13 @@ const App = () => {
 
     
   oscilloscope.on('drawFrame', function(osc) {
-    let c = osc.canvas;
     let ctx = osc.canvasContext;
-    // var gradient = ctx.createLinearGradient(0,0,c.width,0);
-    // gradient.addColorStop(0, randomColor());
-    // gradient.addColorStop(0.5, randomColor());
-    // gradient.addColorStop(1, randomColor());
     ctx.strokeStyle = "#355242";
   });
 
     oscilloscope.addSource(Tone.getDestination());
     oscilloscope.draw();
   });
-
-  function randomColor() {
-    var i = 3;
-    var colors = [];
-    while(i--) {
-      colors.push(random(0,255));
-    }
-    return 'rgb(' + colors.join(',') + ')';
-  }
-
-  function random(a,b) {
-    return ((Math.random() * (b - a + 1) + a)|0);
-  }
 
   return (
     <div className="App">
@@ -98,14 +81,14 @@ const App = () => {
           </div>
           <canvas id="synth-spectrum"/>
          </div>
-         <div className="section-two">
+         {/* <div className="section-two">
           <div className="effects-container">
               <ul>
                 {showKnobs(knob.effects)}
                 {showKnobs(knob.eq)}
               </ul>
           </div>
-         </div>
+         </div> */}
          <div className="section-three">
           <div className="octaves">
             <ul>
@@ -115,7 +98,7 @@ const App = () => {
             </ul>
           </div>
          </div>
-         {/* <div className="section-three">
+         {/* <div className="section-four">
           <div className="adsr-spectrum"></div>
           <div className="adsr-container">
             <ul>
@@ -126,7 +109,8 @@ const App = () => {
          <div className="piano-container">
            <div className="piano-knob"><KnobComponent btnLabel={knob.volume.btnLabel}/></div>
           <Keyboard />
-          <div className="piano-knob"><KnobComponent btnLabel={knob.reverb.btnLabel}/></div>
+          {/* <div className="piano-knob"><KnobComponent btnLabel={knob.reverb.btnLabel}/></div> */}
+          <div className="record-container"><RecordButton/></div>
          </div>
          </SynthManagerProvider>
          <Footer /> 
