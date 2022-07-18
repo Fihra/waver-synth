@@ -1,10 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Piano, KeyboardShortcuts, MidiNumbers } from 'react-piano';
 import 'react-piano/dist/styles.css';
 import * as Tone from 'tone';
 import useSynth from '../context/SynthManagerContext';
 
 const Keyboard = () => {
+    const [ keyboardSize, setKeyboardSize ] = useState(700);
     const firstNote = MidiNumbers.fromNote('c3');
     const lastNote = MidiNumbers.fromNote('e4');
     const keyboardShortcuts = KeyboardShortcuts.create({
@@ -45,6 +46,20 @@ const Keyboard = () => {
         }
     }
 
+    const handleResize = () => {
+        if(window.innerWidth < 1000){
+            setKeyboardSize(500);
+        } else if(window.innerWidth < 500){
+            setKeyboardSize(300);
+        } 
+        else {
+            setKeyboardSize(700);
+        }
+    }
+
+    useEffect(() => {
+        window.addEventListener("resize", handleResize, false)
+    }, []);
 
 
     const resetSynth = () => {
@@ -110,6 +125,8 @@ const Keyboard = () => {
         toneSynth.triggerRelease(savedNote, timeNow + 0.1);
     }
 
+    console.log(window.innerWidth);
+
     return(
         <Piano
             noteRange={{ first: firstNote, last: lastNote }}
@@ -119,7 +136,7 @@ const Keyboard = () => {
             stopNote={(note) => {
                 stopNote(note);
             }}
-            width={700}
+            width={keyboardSize}
             keyboardShortcuts={keyboardShortcuts}
         />
     )

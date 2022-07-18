@@ -41,10 +41,7 @@ const App = () => {
     })
   }
 
-  // window.addEventListener("resize", handleResize);
-
   useEffect(() => {
-    // console.log(windowSize);
     let oscilloscope = AudioOscilloscope(document.getElementById('synth-spectrum'), {
       canvas: {
         width: 300,

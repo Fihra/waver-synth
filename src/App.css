@@ -16,10 +16,12 @@ html {
 body {
   height: 100%;
   /* margin: 0; */
-  margin: 0 250px;
-  /* margin-right: 250px;
-  margin-left: 250px; */
-  
+  /* margin: 0 250px; */
+  overflow-x: hidden;
+  max-width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+  width: 960px;
   background: rgb(0,127,127);
   background: linear-gradient(0deg, rgba(0,127,127,1) 0%, rgba(255,255,255,1) 100%);
   background-repeat: no-repeat;
@@ -45,6 +47,7 @@ h1, h2, h3, h4, h5, h6, p, span, button {
 
 .synth-container {
   flex-grow: 1;
+  flex-direction: column;
 }
 
 #synth-spectrum {
@@ -191,6 +194,7 @@ h1, h2, h3, h4, h5, h6, p, span, button {
 /* Piano */
 .piano-container {
   display: inline-flex;
+  max-width: 100%;
 }
 
 .piano-knob {
@@ -228,4 +232,21 @@ h1, h2, h3, h4, h5, h6, p, span, button {
 
 footer {
   margin-top: 50px;
+}
+
+@media only screen and (max-width: 1000px) {
+  .piano-container {
+    display: block;
+    margin-left: 25%;
+    margin-right: 25%;
+  }
+
+  .piano-knob {
+    padding-left: 120px;
+    padding-top: 0;
+  }
+
+  .record-button {
+    width: 100%;
+  }
 }
