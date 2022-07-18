@@ -19,7 +19,7 @@ const KnobComponent = (prop) => {
     // }
 
     const showValue = (value) => {
-        let newValue = (newValue / 100) * 0.1;
+        let newValue = (value / 100) * 0.1;
         switch(prop.btnLabel){
             case "Volume":
                 let cap;

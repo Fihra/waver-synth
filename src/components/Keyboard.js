@@ -131,8 +131,6 @@ const Keyboard = () => {
         toneSynth.triggerRelease(savedNote, timeNow + 0.1);
     }
 
-    console.log(window.innerWidth);
-
     return(
         <Piano
             noteRange={{ first: firstNote, last: lastNote }}
