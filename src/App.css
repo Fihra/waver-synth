@@ -232,17 +232,52 @@ h1, h2, h3, h4, h5, h6, p, span, button {
 
 footer {
   margin-top: 50px;
+  margin-left: 80px;
 }
 
-@media only screen and (max-width: 1000px) {
+@media only screen and (max-width: 360px) {
+  .piano-container {
+    display: block;
+  }
+  .keyboard-holder {
+    margin-left: 50px;
+  }
+
+  .piano-knob {
+    padding-left: 70px;
+    padding-top: 0;
+  }
+
+  .record-button {
+    width: 240px;
+  }
+
+  footer {
+    margin-left: 0;
+  }
+
+}
+
+/* @media only screen and (min-width: 361px) and (max-width: 500px) {
+  .keyboard-holder{
+    margin-left: -34px;
+  }
+} */
+
+@media only screen and (min-width:361px) and (max-width: 1000px) {
   .piano-container {
     display: block;
     margin-left: 25%;
     margin-right: 25%;
+
+  }
+
+  .keyboard-holder{
+    margin-left: -92px;
   }
 
   .piano-knob {
-    padding-left: 120px;
+    padding-left: 140px;
     padding-top: 0;
   }
 

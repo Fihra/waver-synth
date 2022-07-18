@@ -47,10 +47,14 @@ const Keyboard = () => {
     }
 
     const handleResize = () => {
-        if(window.innerWidth < 1000){
-            setKeyboardSize(500);
+        if(window.innerWidth < 360){
+            console.log("here");
+            setKeyboardSize(200);
         } else if(window.innerWidth < 500){
-            setKeyboardSize(300);
+            console.log("or here")
+            setKeyboardSize(350);
+        } else if(window.innerWidth < 1000){
+            setKeyboardSize(500);
         } 
         else {
             setKeyboardSize(700);

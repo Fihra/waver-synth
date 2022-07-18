@@ -1,6 +1,4 @@
 import './App.css';
-import { SynthContext } from './context/SynthContext';
-import { OctaveContext } from './context/OctaveContext';
 import { KnobContext } from './context/KnobContext';
 import { useState, useContext, useEffect } from 'react';
 import Button from './components/Button';
@@ -19,15 +17,14 @@ const App = () => {
     width: 100,
     height: 220
   })
-  const synth = useContext(SynthContext);
   const knob = useContext(KnobContext);
   const { currentOctaves, currentSynth } = useSynth();
 
-  const showKnobs =(knobCollection) => {
-    return Object.keys(knobCollection).map((item, i) => {
-      return <li><KnobComponent key={i} btnLabel={knobCollection[item].btnLabel}/></li>
-    })
-  }
+  // const showKnobs =(knobCollection) => {
+  //   return Object.keys(knobCollection).map((item, i) => {
+  //     return <li><KnobComponent key={i} btnLabel={knobCollection[item].btnLabel}/></li>
+  //   })
+  // }
 
   let waveform = new Tone.Analyser('waveform', 1024);
 
@@ -105,7 +102,9 @@ const App = () => {
          </div> */}
          <div className="piano-container">
            <div className="piano-knob"><KnobComponent btnLabel={knob.volume.btnLabel}/></div>
+           <div className="keyboard-holder">
           <Keyboard />
+          </div>
           {/* <div className="piano-knob"><KnobComponent btnLabel={knob.reverb.btnLabel}/></div> */}
           <div className="record-container"><RecordButton/></div>
          </div>
