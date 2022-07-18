@@ -2,7 +2,10 @@ import React from 'react';
 
 const Footer = () => {
     return(
-        <footer>Built by Fabian Fabro</footer>
+        <footer>
+            <p>Currently on desktop support only.</p>
+            <p>Built by Fabian Fabro</p>
+        </footer>
     )
 }
 
