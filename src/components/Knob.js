@@ -15,9 +15,9 @@ const KnobComponent = (prop) => {
 
     const { setVolume, setReverb, setDelay, setWah, setDistortion, setTremolo, setBitcrusher, setAttack, setDecay, setSustain, setRelease, setLowEQ, setMidEQ, setHighEQ, settings } = useSynth();
 
-    const fixedDecimalNum = (value) => {
-        return Math.floor(value/10 * 0.1).toFixed(2);
-    }
+    // const fixedDecimalNum = (value) => {
+    //     return Math.floor(value/10 * 0.1).toFixed(2);
+    // }
 
     const showValue = (value) => {
         let newValue = (value / 100) * 0.1;
@@ -42,7 +42,7 @@ const KnobComponent = (prop) => {
                 setReverb(reverbNum);
                 break;
             case "Delay":
-                console.log("delay: ", Math.floor(value / 10) * 0.1);
+                // console.log("delay: ", Math.floor(value / 10) * 0.1);
                 setDelay((Math.floor(value / 10) * 0.1).toFixed(2));
                 break;
             case "Wah":
@@ -52,7 +52,7 @@ const KnobComponent = (prop) => {
                 setDistortion((Math.floor(value /10) * 0.1).toFixed(2));
                 break;
             case "Tremolo":
-                console.log(Math.floor(value / 10));
+                // console.log(Math.floor(value / 10));
                 setTremolo(Math.floor(value / 10));
                 break;
             case "Bitcrusher":
@@ -61,7 +61,7 @@ const KnobComponent = (prop) => {
                 setBitcrusher(checkBit);
                 break;
             case "Low":
-                console.log("Low: ", (Math.floor(value/10) * 0.01).toFixed(2));
+                // console.log("Low: ", (Math.floor(value/10) * 0.01).toFixed(2));
                 setLowEQ((Math.floor(value/10) * 0.01).toFixed(2));
                 break;
             case "Mid":
@@ -71,7 +71,7 @@ const KnobComponent = (prop) => {
                 setHighEQ((Math.floor(value/10) * 0.01).toFixed(2));
                 break;
             case "Attack":
-                console.log("Attack: ", newValue);
+                // console.log("Attack: ", newValue);
                 setAttack(newValue.toFixed(2));
                 break;
             case "Decay":

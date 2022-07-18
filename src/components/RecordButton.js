@@ -4,7 +4,6 @@ import * as Tone from 'tone';
 const RecordButton = () => {
     const [ recording, setRecording ] = useState(false);
     const [ countdown, setCountdown] = useState(10);
-    const [ urlFile, setUrlFile ] = useState("");
 
     const recorder = new Tone.Recorder();
     const destination = Tone.getDestination();
@@ -32,12 +31,10 @@ const RecordButton = () => {
             recorder.start();
             returnURL();  
         }
-        console.log("dont record again")
     }
 
     const returnURL = () => {
         setTimeout(async () => {
-            console.log("heillo")
             const recording = await recorder.stop();
             const url = URL.createObjectURL(recording);
             const anchor = document.createElement("a");
