@@ -200,15 +200,24 @@ h1, h2, h3, h4, h5, h6, p, span, button {
 /* Record Button */
 .record-button {
   position: relative;
-  width: 75px;
-  height: 75px;
+  width: 100px;
+  height: 100px;
+}
+
+.record-button h3 {
+  position: absolute;
+  top: -10px;
+  right: -100px;
+  left: 0px;
+  color: #355242;
+  font-weight: bold;
 }
 
 .record-button button {
   position: absolute;
   top: 50px;
-  width: 100%;
-  height: 100%;
+  width: 75px;
+  height: 75px;
   border-radius: 50%;
   background-color: darkred;
 }

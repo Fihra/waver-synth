@@ -54,7 +54,7 @@ const RecordButton = () => {
         <button id="rec-button" className={recording ? "recording-active" : ""} onClick={handleRecording}>
             <span>REC</span>
         </button>
-        <p>Recording time left: {countdown}</p>
+        <h3>Recording time left: <span>{countdown}</span></h3>
         </div>
     )
 }
