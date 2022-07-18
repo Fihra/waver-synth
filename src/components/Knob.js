@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Knob from 'react-simple-knob';
 import useSynth from '../context/SynthManagerContext';
 
 const KnobComponent = (prop) => {
-    const [value, setvalue ] = useState(0);
     const style = {
         height: "80px",
         width: "170px",
@@ -13,15 +12,14 @@ const KnobComponent = (prop) => {
         fontSize: 35
     }
 
-    const { setVolume, setReverb, setDelay, setWah, setDistortion, setTremolo, setBitcrusher, setAttack, setDecay, setSustain, setRelease, setLowEQ, setMidEQ, setHighEQ, settings } = useSynth();
+    const { setVolume, setReverb, setDelay, setWah, setDistortion, setTremolo, setBitcrusher, setAttack, setDecay, setSustain, setRelease, setLowEQ, setMidEQ, setHighEQ } = useSynth();
 
     // const fixedDecimalNum = (value) => {
     //     return Math.floor(value/10 * 0.1).toFixed(2);
     // }
 
     const showValue = (value) => {
-        let newValue = (value / 100) * 0.1;
-        setvalue(newValue);
+        let newValue = (newValue / 100) * 0.1;
         switch(prop.btnLabel){
             case "Volume":
                 let cap;

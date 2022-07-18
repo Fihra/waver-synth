@@ -13,10 +13,6 @@ import AudioOscilloscope from 'audio-oscilloscope';
 import useSynth from './context/SynthManagerContext';
 
 const App = () => {
-  const [ windowSize, setWindowSize ] = useState({
-    width: 100,
-    height: 220
-  })
   const knob = useContext(KnobContext);
   const { currentOctaves, currentSynth } = useSynth();
 
@@ -29,14 +25,6 @@ const App = () => {
   let waveform = new Tone.Analyser('waveform', 1024);
 
   waveform.connect(Tone.getDestination());
-
-
-  const handleResize =() => {
-    setWindowSize({
-      width: window.innerWidth,
-      height: window.innerHeight
-    })
-  }
 
   useEffect(() => {
     let oscilloscope = AudioOscilloscope(document.getElementById('synth-spectrum'), {

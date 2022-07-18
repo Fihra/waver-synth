@@ -14,7 +14,7 @@ const Keyboard = () => {
         keyboardConfig: KeyboardShortcuts.HOME_ROW,
     });
 
-    const { currentSynth, settings, adsr, eq, currentOctaves } = useSynth();
+    const { currentSynth, settings, currentOctaves } = useSynth();
 
     let toneSynth = new Tone.PolySynth({
         maxPolyphony: 32,
@@ -31,6 +31,7 @@ const Keyboard = () => {
             if(synth.isActive){
                 return synth;
             }
+            return;
         })
         switch(mainSynth[0].synth){
             case "Sine":
@@ -91,6 +92,7 @@ const Keyboard = () => {
             if(oct.isActive){
                 return oct;
             }
+            return;
         })
         switch(outputOctave[0].num){
             case 1:
