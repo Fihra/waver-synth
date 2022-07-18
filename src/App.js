@@ -1,6 +1,6 @@
 import './App.css';
 import { KnobContext } from './context/KnobContext';
-import { useState, useContext, useEffect } from 'react';
+import { useContext, useEffect } from 'react';
 import Button from './components/Button';
 import OctaveButton from './components/OctaveButton';
 import KnobComponent from './components/Knob';

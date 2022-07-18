@@ -31,7 +31,7 @@ const Keyboard = () => {
             if(synth.isActive){
                 return synth;
             }
-            return;
+            return false;
         })
         switch(mainSynth[0].synth){
             case "Sine":
@@ -92,7 +92,7 @@ const Keyboard = () => {
             if(oct.isActive){
                 return oct;
             }
-            return;
+            return false;
         })
         switch(outputOctave[0].num){
             case 1:

@@ -14,16 +14,19 @@ const RecordButton = () => {
             setCountdown(10);
         } else {
             setCountdown(countdown - 1);
-        }
-        
+        } 
     }
 
-    useEffect(() => {
+    const timer = () =>{
         if(recording) {
             const timerId = setInterval(() => tick(), 1000);
             return () => clearInterval(timerId);
         }
-    }, [recording, countdown]);
+    }
+
+    useEffect(() => {
+        timer();
+    },);
 
     const handleRecording =() => {
         if(recording === false){
